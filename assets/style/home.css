@@ -1,0 +1,49 @@
+*{
+     box-sizing: border-box;
+}
+table 
+{
+     border-collapse: collapse;
+     width: 100%;
+     text-align: center;
+}
+
+th 
+{
+     background-color: #f2f2f2;
+     padding: 10px;
+}
+
+td
+{
+     padding: 10px;
+}
+
+/* TABLE */
+.container__section
+{
+     flex-direction:column;
+     justify-content:center
+     
+}
+.container__table
+{
+     padding : 1.5%
+}
+.container__conteudo
+{
+     display:flex;
+     align-items:center;
+     height : 20vh;
+}
+.container__conteudo a
+{
+     margin-left:1.5%;
+     color:#fff !important;
+}
+
+.icon_add
+{
+     width : 25px;
+     height: 25px;
+}

@@ -1,0 +1,21 @@
+:root{
+     --global-primary-color:##2c2c54;
+}
+
+.nav__bar{
+     background-color : #ff793f;
+     display:flex;
+     justify-content:center;
+}
+
+.navbar-brand{
+     width:70%;
+}
+.navbar-nav .nav-link {
+     color: #fff;
+
+}
+
+.navbar-toggler-icon{
+     color:#fff;
+}
