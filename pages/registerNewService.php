@@ -42,13 +42,22 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                </div>
           </div>
           <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-4">
                     <div class="form-group">
                          <label>Peças</label>
                          <select class="form-control form-select" id="pecas">
                               <option value="">Selecione uma Peça</option>
-
+                              <?php foreach ($listParts as $part) : ?>
+                                   <option value="<?= $part['id'] ?>"><?= $part['nome_peca'] ?></option>
+                              <?php endforeach ?>
                          </select>
+                    </div>
+               </div>
+
+               <div class="col-md-2">
+                    <div class="form-group">
+                         <label>Qtde.</label>
+                         <input type="number" class="form-control" id="qtdePecas">
                     </div>
                </div>
                <div class="col-md-6">
@@ -56,8 +65,8 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                          <label for="estado">Serviços</label>
                          <select class="form-control form-select" id="servicos">
                               <option value="">Selecione Um Serviço</option>
-                              <?php foreach ($listClients as $client) : ?>
-                                   <option value="<?=$client['id']?>"><?=$client['nome']?></option>
+                              <?php foreach ($listServico as $servico) : ?>
+                                   <option value="<?= $servico['id'] ?>"><?= $servico['nome_servico'] ?></option>
                               <?php endforeach ?>
                          </select>
                     </div>
@@ -68,7 +77,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                     <div class="form-group">
                          <label>Valor Peça</label>
                          <input type="number" class="form-control" id="valorPeça" placeholder="Digite valor da peça">
-                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca')" class="btn btn-secondary mt-3">Adicionar Peça</button>
+                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas')" class="btn btn-secondary mt-3">Adicionar Peça</button>
                     </div>
                </div>
                <div class="col-md-6">
@@ -106,7 +115,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
           </div>
           <div class="w-100 d-flex justify-content-center">
 
-               <button style="margin: 0px auto;" type="submit" class="w-50 mb-4 mt-3 btn btn-secondary">Enviar</button>
+               <button onclick="finalizaServico()" style="margin: 0px auto;" type="button" class="w-50 mb-4 mt-3 btn btn-secondary">Enviar</button>
           </div>
      </form>
 </div>

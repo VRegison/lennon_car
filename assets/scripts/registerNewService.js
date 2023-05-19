@@ -2,53 +2,55 @@ const services = document.getElementById("itensLista");
 const pecas = document.getElementById("itensListaPecas");
 const arrayEnvioService = [];
 
-
-function adicionarOpcao(idLista, idUl, value, title) {
-
+// FUNÇÕES
+function adicionarOpcao(idLista, idUl, value, title, qtde)
+{
      var select = document.getElementById(idLista);
      var list = document.getElementById(idUl);
      var valor = document.getElementById(value);
-
+     const qtdePeca = document.getElementById(qtde) ? document.getElementById(qtde).value : null;
 
      var obj = {
-          'id': select.value,
-          'valor': valor.value,
-          'title': title
+          id: select.value,
+          valor: valor.value,
+          qtde: qtdePeca,
+          title: title
      };
-
-
 
      // Obtém o valor selecionado
      var selectedValue = select.value;
 
      // Verifica se o valor selecionado não é vazio e não existe na lista
-     if (selectedValue !== "" && !listContainsValue(list, selectedValue) && valor.value > 0) {
+     if (
+          selectedValue !== "" &&
+          !listContainsValue(list, select.options[select.selectedIndex].text) &&
+          valor.value > 0
+     ) {
           var newLi = document.createElement("li");
 
-          newLi.textContent = selectedValue;
+          const valorLi = title == 'peca'
+               ? select.options[select.selectedIndex].text + '(x' + qtdePeca + ')'
+               : select.options[select.selectedIndex].text;
+
+          newLi.textContent = valorLi;
           newLi.setAttribute("title", "Faça um duplo clique para remover");
           newLi.setAttribute("id", selectedValue);
           newLi.setAttribute("name", title);
 
-
           list.appendChild(newLi);
-          arrayEnvioService.push(obj)
+          arrayEnvioService.push(obj);
 
-          console.log("🚀 ", arrayEnvioService)
-
-     }
-     else {
+          console.log("🚀 ", arrayEnvioService);
+     } else {
           Toastify({
-
-               text: "Preencha todos os campos !",
-
+               text: "Preencha todos os campos!",
                duration: 1500
-
           }).showToast();
      }
 }
 
-function listContainsValue(list, value) {
+function listContainsValue(list, value)
+{
      var lis = list.getElementsByTagName("li");
 
      // Verifica se a lista está vazia
@@ -66,7 +68,19 @@ function listContainsValue(list, value) {
      return false;
 }
 
-services.addEventListener("dblclick", function (event) {
+function finalizaServico()
+{
+     $.post("http://localhost/projetos/lennon_car/actions/finishService.php", {data:arrayEnvioService}, function(resposta) {
+     console.log("🚀", resposta)
+    
+      })
+}
+
+
+// EVENTOS 
+
+services.addEventListener("dblclick", function (event)
+{
      if (event.target.tagName.toLowerCase() === "li") {
 
           var index = arrayEnvioService.findIndex(objeto => objeto.id == event.target.id);
@@ -78,7 +92,8 @@ services.addEventListener("dblclick", function (event) {
      }
 });
 
-pecas.addEventListener("dblclick", function (event) {
+pecas.addEventListener("dblclick", function (event)
+{
      // Verifica se o evento de clique ocorreu em um elemento li
      if (event.target.tagName.toLowerCase() === "li") {
           var index = arrayEnvioService.findIndex(objeto => objeto.id == event.target.id);

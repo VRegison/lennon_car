@@ -1,19 +1,19 @@
 <?php
 require_once "../services/OrderService.php";
-require_once "../services/ClientService.php";
-require_once "../services/CarService.php";
+require_once "../services/PartService.php";
+require_once "../services/ServicoService.php";
 
 
 try {
 
 
-     $OrderService = new OrderService();
-     $Clients      = new ClientService();
-     $Cars         = new CarService();
+     $OrderService  = new OrderService();
+     $Servico       = new ServicoService();
+     $Parts         = new PartService();
 
      $services      = $OrderService->getOrderServices();
-     $listClients   = $Clients->index();
-     $listCars      = $Cars->index();
+     $listServico   = $Servico->index();
+     $listParts     = $Parts->index();
      
 } catch (\Throwable $th) {
      echo $th->getMessage();
