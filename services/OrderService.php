@@ -59,22 +59,41 @@ class OrderService extends OrderServiceController
           $stmt = $this->db->getConnection()->prepare($sql);
           $stmt->execute();
 
-          while ($row = $stmt->fetch())
-          {
-               
-               $row['valor_total_servico'] = is_null($row['valor_total_servico']) ?  'em andamento' : $row['valor_total_servico'];
-               $row['data_chegada'] = implode("/",array_reverse(explode("-",$row['data_chegada'])));
-               $row['data_entrega'] = implode("/",array_reverse(explode("-",$row['data_entrega'])));
+          while ($row = $stmt->fetch()) {
 
-               if($row['status']) $row['button'] = '<button  class="disabled btn btn-success">Finalizado</button>';
-               else               $row['button'] = '<button class="btn btn-danger">Finalizar</button>';
-             
+               $row['valor_total_servico'] = is_null($row['valor_total_servico']) ?  'em andamento' : $row['valor_total_servico'];
+               $row['data_chegada'] = implode("/", array_reverse(explode("-", $row['data_chegada'])));
+               $row['data_entrega'] = implode("/", array_reverse(explode("-", $row['data_entrega'])));
+
+               if ($row['status']) $row['button'] = '<button  class="disabled btn btn-success">Finalizado</button>';
+               else               $row['button'] = '<a href="./registerNewService.php?id=' . $row['id'] . '"  class="btn btn-danger">Finalizar</a>';
+
                $services[] = $row;
           }
 
           return $services;
      }
+     public function getOneOrderService($id)
+     {
+          $sql = "SELECT 
+          t1.id,t2.nome,t2.telefone,t2.email,
+          t1.placa_carro,
+          CONCAT(t3.marca,' - ',t1.ano_carro) AS carro,
+          t1.data_chegada,t1.data_entrega,
+          t1.valor_total_servico,t1.status
+         
+          FROM ordem_servico			AS t1
+          LEFT JOIN clientes 			AS t2	ON t1.id_cliente = t2.id
+          LEFT JOIN carros			AS t3	ON t1.id_carro 	 = t3.id
+          WHERE t1.id = $id";
 
+          $stmt = $this->db->getConnection()->prepare($sql);
+          $stmt->execute();
+
+          $service = $stmt->fetch();
+
+          return $service;
+     }
 
      public function insert()
      {
@@ -89,20 +108,18 @@ class OrderService extends OrderServiceController
                 VALUES(
                 :id_cliente,:id_carro, :ano_carro, :placa, :data_chegada
                 )";
-      
-                $stmt = $this->db->getConnection()->prepare($sql);
-                $stmt->bindParam(':id_cliente',parent::__get('idClient'));
-                $stmt->bindParam(':id_carro',parent::__get('idCar'));
-                $stmt->bindParam(':ano_carro',parent::__get('yearCar'));
-                $stmt->bindParam(':placa',parent::__get('plateCar'));
-                $stmt->bindParam(':data_chegada',parent::__get('dateStart'));
-                $stmt->execute();
 
-                return true;
+               $stmt = $this->db->getConnection()->prepare($sql);
+               $stmt->bindParam(':id_cliente', parent::__get('idClient'));
+               $stmt->bindParam(':id_carro', parent::__get('idCar'));
+               $stmt->bindParam(':ano_carro', parent::__get('yearCar'));
+               $stmt->bindParam(':placa', parent::__get('plateCar'));
+               $stmt->bindParam(':data_chegada', parent::__get('dateStart'));
+               $stmt->execute();
+
+               return true;
           } catch (\Throwable $th) {
                echo $th->getMessage();
           }
-
-
      }
 }

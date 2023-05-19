@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-class ClientService 
+class ClientService
 {
      private $db;
 
@@ -13,18 +13,15 @@ class ClientService
 
      public function index()
      {
-          $sql = "SELECT * FROM clientes";
+          $sql = "SELECT * FROM clientes WHERE status = 1";
 
           $stmt = $this->db->getConnection()->prepare($sql);
           $stmt->execute();
 
-          while ($row = $stmt->fetch())
-          {
+          while ($row = $stmt->fetch()) {
                $clients[] = $row;
           }
 
           return $clients;
      }
-
-
 }

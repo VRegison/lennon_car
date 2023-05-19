@@ -12,7 +12,7 @@ require_once('../components/nav.php');
 
 <section class="container__section">
      <div class="container__conteudo">
-          <a class="btn btn-primary" href="./registerOrderService.php">
+          <a class="btn bg-secondary" href="./registerOrderService.php">
                <img class="icon_add" src="../assets/images/add.png">
                Novo Serviço
           </a>
