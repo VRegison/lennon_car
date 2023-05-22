@@ -1,21 +1,35 @@
 const services = document.getElementById("itensLista");
 const pecas = document.getElementById("itensListaPecas");
 const arrayEnvioService = [];
-
+var   obj ={};              
 // FUNÇÕES
-function adicionarOpcao(idLista, idUl, value, title, qtde)
+function adicionarOpcao(idLista, idUl, value, title, qtde,idOrderService)
 {
+     console.log("🚀 ~ file: registerNewService.js:7 ~ idOrderService:", idOrderService)
      var select = document.getElementById(idLista);
      var list = document.getElementById(idUl);
      var valor = document.getElementById(value);
      const qtdePeca = document.getElementById(qtde) ? document.getElementById(qtde).value : null;
 
-     var obj = {
-          id: select.value,
-          valor: valor.value,
-          qtde: qtdePeca,
-          title: title
-     };
+     if(title == 'peca')
+     {
+          obj = {
+               idPeca: select.value,
+               idOrderService:idOrderService,
+               valor: valor.value,
+               qtde: qtdePeca,
+               title: title
+          };
+     }
+     else
+     {
+          obj = {
+               idServico: select.value,
+               idOrderService:idOrderService,
+               valor: valor.value,
+               title: title
+          };
+     }
 
      // Obtém o valor selecionado
      var selectedValue = select.value;
@@ -70,10 +84,30 @@ function listContainsValue(list, value)
 
 function finalizaServico()
 {
-     $.post("http://localhost/projetos/lennon_car/actions/finishService.php", {data:arrayEnvioService}, function(resposta) {
-     console.log("🚀", resposta)
-    
-      })
+     $.post("http://localhost/projetos/lennon_car/actions/finishService.php",{data:arrayEnvioService},
+      function(resposta)
+     {
+          console.log("🚀", resposta)
+          if(resposta )
+          {
+               Toastify({
+                    text: "Serviço finalizado com sucesso !",
+                    duration: 1500
+                }).showToast();
+                
+                setTimeout(()=>{
+                    window.location.href = '../../pages/Home.php';
+                },2000)
+          
+               }
+          else
+          {
+               Toastify({
+                    text: "Dados invalidos !",
+                    duration: 1500
+                }).showToast();
+          }
+     })
 }
 
 

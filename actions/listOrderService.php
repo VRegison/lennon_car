@@ -11,7 +11,7 @@ try {
      $Servico       = new ServicoService();
      $Parts         = new PartService();
 
-     $services      = $OrderService->getOrderServices();
+     $services      = $OrderService->index();
      $listServico   = $Servico->index();
      $listParts     = $Parts->index();
      

@@ -77,14 +77,14 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                     <div class="form-group">
                          <label>Valor Peça</label>
                          <input type="number" class="form-control" id="valorPeça" placeholder="Digite valor da peça">
-                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas')" class="btn btn-secondary mt-3">Adicionar Peça</button>
+                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" class="btn btn-secondary mt-3">Adicionar Peça</button>
                     </div>
                </div>
                <div class="col-md-6">
                     <div class="form-group">
                          <label>Valor Serviço</label>
                          <input type="number" class="form-control" id="valorServico">
-                         <button type="button" onclick="adicionarOpcao('servicos','itensLista','valorServico','servico')" class="btn btn-secondary mt-3">Adicionar Serviço</button>
+                         <button type="button" onclick="adicionarOpcao('servicos','itensLista','valorServico','servico','','<?=$_GET['id']?>')" class="btn btn-secondary mt-3">Adicionar Serviço</button>
                     </div>
 
                </div>

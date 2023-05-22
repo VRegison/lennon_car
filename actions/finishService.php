@@ -4,4 +4,20 @@ require_once '../services/OrderService.php';
 
 $OrderService = new OrderService();
 
-print_r ($OrderService->validationDataOrderService($_POST['data']));
+
+if(is_array($_POST['data']))
+{
+   if($OrderService->validationDataOrderService($_POST['data']))
+   {
+         if($OrderService->finishOrderService())
+         {
+            echo true;
+         }
+   }
+
+}
+
+else
+{
+    echo false;
+}

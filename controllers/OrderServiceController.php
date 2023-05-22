@@ -15,42 +15,47 @@ class OrderServiceController
      {
           // VALIDAÇÕES
 
-         
-               $this->idClient  = $idClient;
-               $this->idCar     = $idCar;
-               $this->yearCar   = $yearCar;
-               $this->plateCar  = $plateCar;
-               $this->dateStart = date('Y-m-d');
-         
+
+          $this->idClient  = $idClient;
+          $this->idCar     = $idCar;
+          $this->yearCar   = $yearCar;
+          $this->plateCar  = $plateCar;
+          $this->dateStart = date('Y-m-d');
      }
 
 
      public function validationDataOrderService($data)
      {
-          $arrayData = array();
-          foreach ($data as $item)
-           {
-              $title = $item['title'];
-              
-              if (!isset($arrayData[$title])) {
-                  $arrayData[$title] = array();
-              }
-              $arrayData[$title][] = $item;
-          }
-          
 
-          foreach ($arrayData['servico'] as $key => $value) 
+          try
           {
-               $this->services[] = $value;
-          }
+               $arrayData = array();
+               foreach ($data as $item)
+               {
+                    $title = $item['title'];
 
-          foreach ($arrayData['peca'] as $key => $value) 
-          {
-               $this->parts[] = $value;
-          }
+                    if (!isset($arrayData[$title]))
+                    {
+                         $arrayData[$title] = array();
+                    }
+                    $arrayData[$title][] = $item;
+               }
 
-          return $this->__get('services');;
-      
+
+               foreach ($arrayData['servico'] as $key => $value)
+               {
+                    $this->services[] = $value;
+               }
+
+               foreach ($arrayData['peca'] as $key => $value)
+               {
+                    $this->parts[] = $value;
+               }
+
+               return true;
+          } catch (\Throwable $th) {
+               echo 'Error :' . $th->getMessage(). "<br />";
+          }
      }
 
 
