@@ -1,15 +1,22 @@
 :root{
-     --global-primary-color:##2c2c54;
+     --global-primary-color:#7da7bd;
 }
 
 .nav__bar{
      display:flex;
      justify-content:center;
+     background: var(--global-primary-color);
 }
 
+
+
 .navbar-brand{
-     width:70%;
+     width:1%;
 }
+
+
+
+
 .navbar-nav .nav-link {
      color: #fff;
 

@@ -6,18 +6,18 @@ require("../services/CarService.php");
 try {
 
      $clientService = new ClientService();
-     $carService = new CarService();
+     $carService    = new CarService();
 
 
-     $clients = $clientService->index();
-     $cars = $carService->index();
+     $clients  = $clientService->index();
+     $cars     = $carService->index();
 
 
 
      switch ($_POST['status']) {
           case  '1':
-     echo $_POST['status'];
-     echo $_POST['status'];
+          echo $_POST['status'];
+          echo $_POST['status'];
 
                $orderService = new OrderService();
                $orderService->setOrderService($_POST['client'], $_POST['car'], $_POST['year'], $_POST['place']);

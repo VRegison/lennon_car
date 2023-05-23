@@ -95,9 +95,9 @@ function finalizaServico()
                     duration: 1500
                 }).showToast();
                 
-                setTimeout(()=>{
-                    window.location.href = '../../pages/Home.php';
-                },2000)
+               //  setTimeout(()=>{
+               //      window.location.href = '../../pages/Home.php';
+               //  },2000)
           
                }
           else

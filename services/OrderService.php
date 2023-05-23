@@ -35,6 +35,7 @@ class OrderService extends OrderServiceController
           $sql = "SELECT 
                     t1.id, t2.nome, t2.telefone,
                     CONCAT(t3.marca, ' - ', t1.ano_carro) AS carro,
+                    t1.placa_carro,
                     t1.data_chegada, t1.data_entrega,
                     t1.valor_total_servico, t1.status
                    FROM ordem_servico AS t1
@@ -52,8 +53,11 @@ class OrderService extends OrderServiceController
                $row['data_chegada'] = formatDate($row['data_chegada']);
                $row['data_entrega'] = formatDate($row['data_entrega']);
                
-               $row['button'] = ($row['status']) ? '<button class="disabled btn btn-success">Finalizado</button>' : '<a href="./registerNewService.php?id=' . $row['id'] . '" class="btn btn-danger">Finalizar</a>';
-               
+               $row['button'] = ($row['status']) ? '<button class="disabled btn btn-success">Finalizado</button>' : '<a href="./finishOrderService.php?id=' . $row['id'] . '" class="btn btn-danger">Finalizar</a>';
+               $row['edit'] = '<img  style="width:24px;" src="../assets/images/edit.png" alt=""></td>';
+               $row['printOut'] = '<img  src="../assets/images/imprimir.png" alt=""></td>';
+
+                              
                $services[] = $row;
           }
      
@@ -93,6 +97,60 @@ class OrderService extends OrderServiceController
           }
      }
 
+     public function getAllServiceOrderService($id)
+     {
+            try
+               {
+                    $sql = "SELECT 
+                    t2.nome_servico,t1.valor
+                         FROM itens_servicos AS t1
+                         LEFT JOIN servicos 	AS t2 ON t1.idServico = t2.id
+                         
+                         WHERE t1.idOrdemServico = :id";
+     
+                    $stmt = $this->db->getConnection()->prepare($sql);
+                    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+                    $stmt->execute();
+     
+                    $service = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+                    return $service;
+     
+               } 
+               
+               catch (\Throwable $th)
+               {
+                   echo $th->getMessage();
+               }
+     }
+
+     public function getAllPartsOrderService($id)
+     {
+            try
+               {
+                    $sql = "SELECT 
+                    t2.nome_peca,t1.valor
+                    FROM itens_pecas AS t1
+                    LEFT JOIN pecas  AS t2 ON t1.idPeca = t2.id
+                    
+                    WHERE t1.idOrdemServico =  :id";
+     
+                    $stmt = $this->db->getConnection()->prepare($sql);
+                    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+                    $stmt->execute();
+     
+                    $service = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+                    return $service;
+     
+               } 
+               
+               catch (\Throwable $th)
+               {
+                   echo $th->getMessage();
+               }
+     }
+
      //INSERT NEW WORK ORDER
      public function insert()
      {
@@ -122,27 +180,34 @@ class OrderService extends OrderServiceController
      {
          try
          {
-             $sqlPecas = "INSERT INTO itens_pecas (idOrdemServico, idPeca, qtde, valor) VALUES (:idOrdemServico, :idPeca, :qtde, :valor)";
-             $sqlServices = "INSERT INTO itens_servicos (idOrdemServico, idServico,  valor) VALUES (:idOrdemServico, :idServico, :valor)";
+             $totalParts = 0;
+             $totalService = 0;
+
+             $sqlPecas     = "INSERT INTO itens_pecas (idOrdemServico, idPeca, qtde, valor) VALUES (:idOrdemServico, :idPeca, :qtde, :valor)";
+             $sqlServices  = "INSERT INTO itens_servicos (idOrdemServico, idServico,  valor) VALUES (:idOrdemServico, :idServico, :valor)";
             
-             $stmtPeca = $this->db->getConnection()->prepare($sqlPecas);
-             $stmtService = $this->db->getConnection()->prepare($sqlServices);
+             $stmtPeca     = $this->db->getConnection()->prepare($sqlPecas);
+             $stmtService  = $this->db->getConnection()->prepare($sqlServices);
 
              // SAVING PARTS ARRAY
              foreach ($this->parts as $part)
              {
+                $totalParts += $part['valor'] * $part['qtde'];
                 $idOrdemServico =  $part['idOrderService'];
-                 $stmtPeca->execute([
+                $stmtPeca->execute([
                      ':idOrdemServico' => $part['idOrderService'],
                      ':idPeca' => $part['idPeca'],
                      ':qtde' => $part['qtde'],
                      ':valor' => $part['valor']
-                 ]);
+                ]);
              }
 
              // SAVING SERVICE ARRAY
              foreach ($this->services as $service)
              {
+                $idOrdemServico =  $service['idOrderService'];
+                $totalService += $service['valor'];
+
                  $stmtService->execute([
                      ':idOrdemServico' => $service['idOrderService'],
                      ':idServico' => $service['idServico'],
@@ -150,9 +215,12 @@ class OrderService extends OrderServiceController
                  ]);
              }
 
-             $stmtService = $this->db->getConnection()->query('UPDATE ordem_servico SET status = 1 WHERE id = '.$idOrdemServico.'');
+             $data = date('Y-m-d');
+             $totalService = $totalParts + $totalService;
 
-
+             $query = "UPDATE ordem_servico SET data_entrega = '$data', valor_total_servico = $totalService, status = 1 WHERE id = $idOrdemServico";
+             $this->db->getConnection()->query($query);
+             
              return true;
          }
 

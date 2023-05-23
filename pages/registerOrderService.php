@@ -11,7 +11,7 @@ require_once('../actions/register.php')
 
           <div class="form-group">
                <label for="exampleInputEmail1">Cliente</label>
-               <select name="client" class="form-control selectClient">
+               <select name="client" class="form-control selectClient select2_style">
                     <option>Selecione um cliente</option>
                     <?php foreach ($clients as $client) : ?>
                          <option value="<?= $client['id'] ?>"><?= $client['nome'] ?></option>
@@ -21,7 +21,7 @@ require_once('../actions/register.php')
 
           <div class="form-group">
                <label for="exampleInputEmail1">Veiculo</label>
-               <select name="car" class="form-control selectClient">
+               <select name="car" class="form-control selectClient select2_style">
                     <option>Selecione um Veiculo</option>
                     <?php foreach ($cars as $car) : ?>
                          <option value="<?= $car['id'] ?>"><?= $car['modelo'] . ' - ' . $car['marca'] ?></option>

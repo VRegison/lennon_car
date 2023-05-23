@@ -9,10 +9,11 @@ if(is_array($_POST['data']))
 {
    if($OrderService->validationDataOrderService($_POST['data']))
    {
-         if($OrderService->finishOrderService())
-         {
-            echo true;
-         }
+      echo $OrderService->finishOrderService();
+         // if($OrderService->finishOrderService())
+         // {
+         //    echo true;
+         // }
    }
 
 }
