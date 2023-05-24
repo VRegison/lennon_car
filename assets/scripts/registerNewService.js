@@ -1,31 +1,32 @@
 const services = document.getElementById("itensLista");
 const pecas = document.getElementById("itensListaPecas");
 const arrayEnvioService = [];
-var   obj ={};              
+var obj = {};
+var arrayRemoverServico = [];
+var removerObj = {};
+
+
 // FUNÇÕES
-function adicionarOpcao(idLista, idUl, value, title, qtde,idOrderService)
-{
+function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService) {
      console.log("🚀 ~ file: registerNewService.js:7 ~ idOrderService:", idOrderService)
      var select = document.getElementById(idLista);
      var list = document.getElementById(idUl);
      var valor = document.getElementById(value);
      const qtdePeca = document.getElementById(qtde) ? document.getElementById(qtde).value : null;
 
-     if(title == 'peca')
-     {
+     if (title == 'peca') {
           obj = {
                idPeca: select.value,
-               idOrderService:idOrderService,
+               idOrderService: idOrderService,
                valor: valor.value,
                qtde: qtdePeca,
                title: title
           };
      }
-     else
-     {
+     else {
           obj = {
                idServico: select.value,
-               idOrderService:idOrderService,
+               idOrderService: idOrderService,
                valor: valor.value,
                title: title
           };
@@ -63,8 +64,7 @@ function adicionarOpcao(idLista, idUl, value, title, qtde,idOrderService)
      }
 }
 
-function listContainsValue(list, value)
-{
+function listContainsValue(list, value) {
      var lis = list.getElementsByTagName("li");
 
      // Verifica se a lista está vazia
@@ -82,58 +82,103 @@ function listContainsValue(list, value)
      return false;
 }
 
-function finalizaServico()
-{
-     $.post("http://localhost/projetos/lennon_car/actions/finishService.php",{data:arrayEnvioService},
-      function(resposta)
-     {
-          console.log("🚀", resposta)
-          if(resposta )
-          {
-               Toastify({
-                    text: "Serviço finalizado com sucesso !",
-                    duration: 1500
-                }).showToast();
-                
-               //  setTimeout(()=>{
-               //      window.location.href = '../../pages/Home.php';
-               //  },2000)
-          
+function finalizaServico() {
+     $.post("http://localhost/projetos/lennon_car/actions/finishService.php", { data: arrayEnvioService },
+          function (resposta) {
+               console.log("🚀 ~ file: registerNewService.js:89 ~ finalizaServico ~ resposta:", resposta)
+               if (resposta) {
+                    Toastify({
+                         text: "Serviço finalizado com sucesso !",
+                         duration: 1500
+                    }).showToast();
+
+                    setTimeout(() => {
+                         window.location.href = '../../pages/Home.php';
+                    }, 2000)
+
                }
-          else
-          {
-               Toastify({
-                    text: "Dados invalidos !",
-                    duration: 1500
-                }).showToast();
-          }
-     })
+               else {
+                    Toastify({
+                         text: "Dados invalidos !",
+                         duration: 1500
+                    }).showToast();
+               }
+          })
 }
 
+function editOrderService() {
+
+
+
+     $.post("http://localhost/projetos/lennon_car/actions/editService.php", { data: arrayRemoverServico },
+          function (resposta) {
+
+               if (arrayEnvioService.length > 0) {
+                    console.log(finalizaServico())
+               }
+
+
+
+          })
+
+}
 
 // EVENTOS 
 
-services.addEventListener("dblclick", function (event)
-{
+services.addEventListener("dblclick", function (event) {
      if (event.target.tagName.toLowerCase() === "li") {
 
-          var index = arrayEnvioService.findIndex(objeto => objeto.id == event.target.id);
-          if (index !== -1) {
-               arrayEnvioService.splice(index, 1);
-          }
-          event.target.remove();
+          if (event.target.tagName.toLowerCase() === "li") {
+               var idElemento = event.target.id;
 
+               let separandoElementos = idElemento.split("_");
+
+               removerObj = {
+                    idServico: separandoElementos[0],
+                    idOrderService: separandoElementos[1],
+                    title: "servico"
+               }
+
+
+               // Armazenar o ID no objeto
+
+               var index = arrayEnvioService.findIndex(objeto => objeto.id == idElemento);
+               if (index !== -1) {
+                    arrayEnvioService.splice(index, 1);
+               }
+               event.target.remove();
+          }
      }
+     arrayRemoverServico.push(removerObj)
+
 });
 
-pecas.addEventListener("dblclick", function (event)
-{
+pecas.addEventListener("dblclick", function (event) {
      // Verifica se o evento de clique ocorreu em um elemento li
      if (event.target.tagName.toLowerCase() === "li") {
-          var index = arrayEnvioService.findIndex(objeto => objeto.id == event.target.id);
-          if (index !== -1) {
-               arrayEnvioService.splice(index, 1);
+
+          if (event.target.tagName.toLowerCase() === "li") {
+               var idElemento = event.target.id;
+
+               let separandoElementos = idElemento.split("_");
+
+               removerObj = {
+                    idPeca: separandoElementos[0],
+                    idOrderService: separandoElementos[1],
+                    title: 'peca'
+               }
+
+               // Armazenar o ID no objeto
+
+
+               var index = arrayEnvioService.findIndex(objeto => objeto.id == idElemento);
+               if (index !== -1) {
+                    arrayEnvioService.splice(index, 1);
+               }
+
+               arrayRemoverServico.push(removerObj)
+               event.target.remove();
           }
-          event.target.remove();
      }
+
 });

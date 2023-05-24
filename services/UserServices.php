@@ -58,6 +58,9 @@ class UserService extends UserController
           {
                $this->data['status'] = false;
                $this->data['msg'] = 'Erro ao logar, usuario ou senha não encontrados !';
+               $_SESSION['login'] = $this->data['msg'];
+               header('Location:../index.php');
+   
                return $this->data;
           }
      }

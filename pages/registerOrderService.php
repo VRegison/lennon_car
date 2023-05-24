@@ -9,7 +9,7 @@ require_once('../actions/register.php')
      <h1 class="text-center mt-5">Novo Serviço</h1>
      <form method="post" action="../actions/register.php" class="w-50 container__form">
 
-          <div class="form-group">
+          <div class="form-group  mb-3">
                <label for="exampleInputEmail1">Cliente</label>
                <select name="client" class="form-control selectClient select2_style">
                     <option>Selecione um cliente</option>
@@ -19,7 +19,7 @@ require_once('../actions/register.php')
                </select>
           </div>
 
-          <div class="form-group">
+          <div class="form-group  mt-3">
                <label for="exampleInputEmail1">Veiculo</label>
                <select name="car" class="form-control selectClient select2_style">
                     <option>Selecione um Veiculo</option>
@@ -29,18 +29,18 @@ require_once('../actions/register.php')
                </select>
           </div>
 
-          <div class="form-group">
+          <div class="form-group  mt-3">
                <label for="exampleInputPassword1">Placa</label>
                <input type="text" name="place" class="form-control" placeholder="Placa do Veiculo">
           </div>
 
-          <div class="form-group">
+          <div class="form-group mt-3">
                <label for="exampleInputPassword1">Ano Veiculo</label>
                <input type="text" name="year" class="form-control" placeholder="Ano do Veiculo">
           </div>
 
           <input type="hidden" name="status" value="1">
-          <button type="submit" class="w-100 btn btn-primary">Salvar</button>
+          <button type="submit" style="background: #7da7bd;color:#fff" class="w-100 btn">Salvar</button>
      </form>
 </div>
 

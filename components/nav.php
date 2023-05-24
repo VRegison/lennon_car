@@ -17,6 +17,10 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <!-- Toat -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css" integrity="sha512-k+xZuzf4IaGQK9sSDjaNyrfwgxBfoF++7u6Q0ZVUs2rDczx9doNZkYXyyQbnJQcMR4o+IjvAcIj69hHxiOZEig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
      <!-- Styles -->
      <link rel="stylesheet" href="../assets/style/nav.css" />
      <link rel="stylesheet" href="../assets/style/home.css" />
@@ -29,7 +33,7 @@
 <body>
      <nav class="navbar navbar-expand-lg nav__bar ">
           <a class="navbar-brand" href="#">
-               <img src="../assets/images/logo.png" style="width: 100px;">
+               <!-- <img src="../assets/images/logo.png" style="width: 100px;"> -->
           </a>
 
 

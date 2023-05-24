@@ -1,24 +1,33 @@
 <?php
 require_once '../services/OrderService.php';
 
-
-$OrderService = new OrderService();
-
-
-if(is_array($_POST['data']))
+try
 {
-   if($OrderService->validationDataOrderService($_POST['data']))
+
+   $OrderService = new OrderService();
+
+   // VERIFY DATA TO END SERVICE
+   if(is_array($_POST['data']))
    {
-      echo $OrderService->finishOrderService();
-         // if($OrderService->finishOrderService())
-         // {
-         //    echo true;
-         // }
+      if($OrderService->validationDataOrderService($_POST['data']))
+      {
+         echo $OrderService->finishOrderService();
+            // if($OrderService->finishOrderService())
+            // {
+            //    echo true;
+            // }
+      }
+   
    }
 
+   else
+   {
+       echo false;
+   }
+   
 }
 
-else
+catch (\Throwable $th)
 {
-    echo false;
+   echo $th->getMessage();
 }

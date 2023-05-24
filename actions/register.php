@@ -3,11 +3,12 @@ require '../services/OrderService.php';
 require("../services/ClientService.php");
 require("../services/CarService.php");
 
-try {
+try
+{
 
+     // LIST CLIENTS AND CARS
      $clientService = new ClientService();
      $carService    = new CarService();
-
 
      $clients  = $clientService->index();
      $cars     = $carService->index();
@@ -28,6 +29,8 @@ try {
 
                break;
      }
-} catch (\Throwable $th) {
+} 
+catch (\Throwable $th)
+{
      echo $th->getMessage();
 }

@@ -4,9 +4,10 @@ require_once "../services/PartService.php";
 require_once "../services/ServicoService.php";
 
 
-try {
+try
+{
 
-
+     // LIST ORDER SERVICES, SERVICES, PARTS
      $OrderService  = new OrderService();
      $Servico       = new ServicoService();
      $Parts         = new PartService();
@@ -15,6 +16,8 @@ try {
      $listServico   = $Servico->index();
      $listParts     = $Parts->index();
      
-} catch (\Throwable $th) {
+}
+catch (\Throwable $th)
+{
      echo $th->getMessage();
 }
