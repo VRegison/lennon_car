@@ -10,18 +10,27 @@ class CarService
           $this->db->connect();
      }
 
+     // GET ALL SERVICES
      public function index()
      {
-          $sql = "SELECT * FROM carros";
-
-          $stmt = $this->db->getConnection()->prepare($sql);
-          $stmt->execute();
-
-          while ($row = $stmt->fetch())
+          try 
           {
-               $cars[] = $row;
-          }
+               $sql = "SELECT * FROM carros";
 
-          return $cars;
+               $stmt = $this->db->getConnection()->prepare($sql);
+               $stmt->execute();
+     
+               while ($row = $stmt->fetch())
+               {
+                    $cars[] = $row;
+               }
+     
+               return $cars;
+          } 
+          
+          catch (\Throwable $th)
+          {
+               return $th->getMessage();
+          }
      }
 }

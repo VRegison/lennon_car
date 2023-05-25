@@ -11,7 +11,7 @@ class ServicoService extends ServiceController
           $this->db->connect();
      }
 
-
+     // GET ALL SERVICOS NAMES
      public function index()
      {
           $sql = "SELECT * FROM servicos";
@@ -20,5 +20,54 @@ class ServicoService extends ServiceController
           $parts = $result->fetchAll(PDO::FETCH_ASSOC);
 
           return $parts;
+     }
+
+
+     public function insert()
+     {
+
+
+          $sqlSelect = "SELECT * FROM `servicos` WHERE nome_servico = :nome";
+          $stmtSelect = $this->db->getConnection()->prepare($sqlSelect);
+          $stmtSelect->bindParam(':nome', $this->getName());
+          $stmtSelect->execute();
+          
+          $results = $stmtSelect->fetchAll();
+          
+          if (count($results) > 0)
+          {
+              $data['status'] = false;
+              $data['msg'] = 'Servico já existente !';
+              return $data;
+          }
+
+          else
+          {
+               $sql = "INSERT INTO servicos (nome_servico,descricao) VALUES (:servico,:descricao)";
+
+               $stmp = $this->db->getConnection()->prepare($sql);
+               $stmp->bindParam(':servico', $this->getName());
+               $stmp->bindParam(':descricao', $this->getDescription());
+     
+              $result =  $stmp->execute();
+
+              if($result)
+              {
+               $data['status'] = true;
+               $data['msg'] = 'Peça Criada!';
+              }
+
+              else
+              {
+               $data['status'] = false;
+               $data['msg'] = 'Error ao criar peça, verificar com o suporte !';
+              }
+
+              return $data;
+          }
+
+
+
+
      }
 }

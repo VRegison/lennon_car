@@ -1,4 +1,18 @@
-// In your Javascript (external .js resource or <script> tag)
+var erroRegister = $("#msgRegister").val();
+
+
 $(document).ready(function() {
      $('.selectClient').select2();
  });
+
+
+ if(erroRegister != 0)
+ {
+    Toastify({
+
+        text: erroRegister,
+
+        duration: 1500
+
+    }).showToast();
+ }

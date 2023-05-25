@@ -9,10 +9,23 @@ class PartController
 
      public function setName($name)
      {
-          $this->name = $name;
+          if(is_string($name) && strlen($name) > 3)
+          {
+               $this->name = $name;
+               
+               $data['status'] = true;
+               return $data;
+          }
+
+          else
+          {
+               $data['status'] = false;
+               $data['msg'] = "Nome da Peça Invalido";
+               return $data;
+          }
      }
 
-     public function getName($name)
+     public function getName()
      {
           return $this->name;
      } 

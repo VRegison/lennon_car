@@ -163,14 +163,17 @@ class OrderService extends OrderServiceController
      {
           try
           {
-               $sql = "INSERT INTO `ordem_servico` (id_cliente,id_carro,ano_carro,placa_carro,data_chegada) VALUES (:id_cliente, :id_carro, :ano_carro, :placa, :data_chegada)";
+               $sql = "INSERT INTO `ordem_servico` (id_cliente,id_carro,ano_carro,placa_carro,data_chegada,kmAtual,corCarro) VALUES (:id_cliente, :id_carro, :ano_carro, :placa, :data_chegada, :kmAtual, :corCarro)";
            
                $stmt = $this->db->getConnection()->prepare($sql);
-               $stmt->bindValue(':id_cliente', parent::__get('idClient'), PDO::PARAM_INT);
-               $stmt->bindValue(':id_carro', parent::__get('idCar'), PDO::PARAM_INT);
-               $stmt->bindValue(':ano_carro', parent::__get('yearCar'), PDO::PARAM_STR);
-               $stmt->bindValue(':placa', parent::__get('plateCar'), PDO::PARAM_STR);
-               $stmt->bindValue(':data_chegada', parent::__get('dateStart'), PDO::PARAM_STR);
+               $stmt->bindValue(':id_cliente',    parent::__get('idClient'), PDO::PARAM_INT);
+               $stmt->bindValue(':id_carro',      parent::__get('idCar'), PDO::PARAM_INT);
+               $stmt->bindValue(':ano_carro',     parent::__get('yearCar'), PDO::PARAM_STR);
+               $stmt->bindValue(':placa',         parent::__get('plateCar'), PDO::PARAM_STR);
+               $stmt->bindValue(':data_chegada',  parent::__get('dateStart'), PDO::PARAM_STR);
+               $stmt->bindValue(':kmAtual',       parent::__get('km'), PDO::PARAM_STR);
+               $stmt->bindValue(':corCarro',      parent::__get('color'), PDO::PARAM_STR);
+
                $stmt->execute();
            
                return true;

@@ -6,20 +6,22 @@ class OrderServiceController
      private int    $idCar;
      private int    $yearCar;
      private String $plateCar;
+     private String $color;
+     private String $km;
      private        $dateStart;
      private array  $services = [];
      private        $parts    = [];
 
 
-     public function setOrderService($idClient, $idCar, $yearCar, $plateCar)
+     public function setOrderService($idClient, $idCar, $yearCar, $plateCar,$color,$km)
      {
           // VALIDAÇÕES
-
-
           $this->idClient  = $idClient;
           $this->idCar     = $idCar;
           $this->yearCar   = $yearCar;
           $this->plateCar  = $plateCar;
+          $this->color     = $color;
+          $this->km        = $km;
           $this->dateStart = date('Y-m-d');
      }
 

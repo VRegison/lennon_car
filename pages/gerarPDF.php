@@ -16,6 +16,36 @@ try {
      $parts    = $OrderService->getAllPartsOrderService($_GET['id']);
      $services = $OrderService->getAllServiceOrderService($_GET['id']);
 
+     foreach($parts as $part)
+     {
+         $valorTotalPecas += $part['valor'] * $part['qtde'];
+         $linhaPecas  .= '
+          <tr> 
+               <td style="text-align:center; border: 1px solid #000;">'.$part['nome_peca'].'</td>
+               <td style="text-align:center;border: 1px solid #000;">'.$part['qtde'].'</td>
+               <td style="text-align:center;border: 1px solid #000;">'.$part['valor'].'</td>
+               <td style="text-align:center;border: 1px solid #000;">'.$part['valor'] * $part['qtde'].'</td>
+          </tr> 
+          
+          ';
+     }
+
+
+     foreach($services as $service)
+     {
+         $valorTotalService += $service['valor'];
+         $linhaService  .= '
+          <tr>
+               <td style="text-align:left; border: 1px solid #000;">'.$service['nome_servico'].'</td>
+               <td style="text-align:center;border: 1px solid #000;"> R$'.$service['valor'].'</td>
+          </tr>
+          ';
+     }
+
+
+     $total = $valorTotalService + $valorTotalPecas;
+
+
 
      // Criar uma nova instância do mPDF
      $mpdf = new Mpdf();
@@ -62,36 +92,7 @@ try {
                </thead>';
      $html .= '</table>';
 
-     foreach($parts as $part)
-     {
-         $valorTotalPecas += $part['valor'] * $part['qtde'];
-         $linhaPecas  .= '
-          <tr> 
-               <td style="text-align:center; border: 1px solid #000;">'.$part['nome_peca'].'</td>
-               <td style="text-align:center;border: 1px solid #000;">'.$part['qtde'].'</td>
-               <td style="text-align:center;border: 1px solid #000;">'.$part['valor'].'</td>
-               <td style="text-align:center;border: 1px solid #000;">'.$part['valor'] * $part['qtde'].'</td>
-          </tr> 
-          
-          ';
-     }
-
-
-     foreach($services as $service)
-     {
-         $valorTotalService += $service['valor'];
-         $linhaService  .= '
-          <tr>
-               <td style="text-align:left; border: 1px solid #000;">'.$service['nome_servico'].'</td>
-               <td style="text-align:center;border: 1px solid #000;"> R$'.$service['valor'].'</td>
-          </tr>
-          ';
-     }
-
-
-$total = $valorTotalService + $valorTotalPecas;
-
-
+  
      $html .= '<table style="border-collapse: collapse; width: 100%;">
      <thead>
           <tr>

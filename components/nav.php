@@ -55,9 +55,9 @@
                               Cadastros
                          </a>
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Cliente</a>
-                              <a class="dropdown-item" href="#">Serviços</a>
-                              <a class="dropdown-item" href="#">Peças</a>
+                              <a class="dropdown-item" href="../pages/registerClient.php">Cliente</a>
+                              <a class="dropdown-item" href="../pages/registerService.php">Serviços</a>
+                              <a class="dropdown-item" href="../pages/registerParts.php">Peças</a>
                          </div>
                     </li>
                     <li class="nav-item dropdown">

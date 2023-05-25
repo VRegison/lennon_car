@@ -21,4 +21,51 @@ class PartService extends PartController
 
           return $parts;
      }
+
+
+     public function insert()
+     {
+
+          $sqlSelect = "SELECT * FROM `pecas` WHERE nome_peca = :nome";
+          $stmtSelect = $this->db->getConnection()->prepare($sqlSelect);
+          $stmtSelect->bindParam(':nome', $this->getName());
+          $stmtSelect->execute();
+          
+          $results = $stmtSelect->fetchAll();
+          
+          if (count($results) > 0)
+          {
+              $data['status'] = false;
+              $data['msg'] = 'Peça já existente!';
+              return $data;
+          }
+
+          else
+          {
+              $sql = "INSERT INTO pecas (nome_peca) VALUES (:peca)";
+              $stmt = $this->db->getConnection()->prepare($sql);
+              $stmt->bindParam(':peca', $this->getName());
+              $result =  $stmt->execute();
+
+              if($result)
+              {
+               $data['status'] = true;
+               $data['msg'] = 'Peça Criada!';
+              }
+
+              else
+              {
+               $data['status'] = false;
+               $data['msg'] = 'Error ao criar peça, verificar com o suporte !';
+              }
+
+              return $data;
+          }
+          
+
+
+
+
+
+     }
 }
