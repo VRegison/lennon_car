@@ -27,7 +27,7 @@ try
                $return = $orderService->insert();
 
                if ($return) $_SESSION['registro'] = 1;
-               header('Location:../pages/Home.php');
+               header('Location:../pages/home.php');
 
           break;
 

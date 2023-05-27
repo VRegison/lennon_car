@@ -8,15 +8,18 @@ var removerObj = {};
 
 // FUNÇÕES
 function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService) {
-     console.log("🚀 ~ file: registerNewService.js:7 ~ idOrderService:", idOrderService)
+
      var select = document.getElementById(idLista);
      var list = document.getElementById(idUl);
      var valor = document.getElementById(value);
      const qtdePeca = document.getElementById(qtde) ? document.getElementById(qtde).value : null;
 
      if (title == 'peca') {
+
+          let id = select.value.split("_");
+
           obj = {
-               idPeca: select.value,
+               idPeca: id[0],
                idOrderService: idOrderService,
                valor: valor.value,
                qtde: qtdePeca,
@@ -34,7 +37,6 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService) {
 
      // Obtém o valor selecionado
      var selectedValue = select.value;
-
      // Verifica se o valor selecionado não é vazio e não existe na lista
      if (
           selectedValue !== "" &&
@@ -55,7 +57,6 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService) {
           list.appendChild(newLi);
           arrayEnvioService.push(obj);
 
-          console.log("🚀 ", arrayEnvioService);
      } else {
           Toastify({
                text: "Preencha todos os campos!",
@@ -74,7 +75,11 @@ function listContainsValue(list, value) {
 
      // Verifica se o valor já existe na lista
      for (var i = 0; i < lis.length; i++) {
-          if (lis[i].textContent === value) {
+          let separandoElementos = lis[i].textContent.split("(");
+          console.log(separandoElementos.includes(value))
+
+
+          if (separandoElementos.includes(value)) {
                return true;
           }
      }
@@ -85,7 +90,6 @@ function listContainsValue(list, value) {
 function finalizaServico() {
      $.post("http://localhost/projetos/lennon_car/actions/finishService.php", { data: arrayEnvioService },
           function (resposta) {
-               console.log("🚀 ~ file: registerNewService.js:89 ~ finalizaServico ~ resposta:", resposta)
                if (resposta) {
                     Toastify({
                          text: "Serviço finalizado com sucesso !",
@@ -93,7 +97,7 @@ function finalizaServico() {
                     }).showToast();
 
                     setTimeout(() => {
-                         window.location.href = '../../pages/Home.php';
+                         window.location.href = '../../pages/home.php';
                     }, 2000)
 
                }
@@ -171,7 +175,8 @@ pecas.addEventListener("dblclick", function (event) {
                // Armazenar o ID no objeto
 
 
-               var index = arrayEnvioService.findIndex(objeto => objeto.id == idElemento);
+               var index = arrayEnvioService.findIndex(objeto => objeto.idPeca == separandoElementos[0]);
+               console.log("🚀 ~ file: registerNewService.js:175 ~ index:", index)
                if (index !== -1) {
                     arrayEnvioService.splice(index, 1);
                }
@@ -180,5 +185,6 @@ pecas.addEventListener("dblclick", function (event) {
                event.target.remove();
           }
      }
+     console.log("🚀 ", arrayEnvioService);
 
 });

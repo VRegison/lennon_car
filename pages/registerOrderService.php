@@ -61,7 +61,9 @@ require_once('../actions/register.php')
                     </div>
                </div>
           </div>
+          
           <input type="hidden" name="status" value="1">
+          <input type="hidden" id="msgRegister" value="<?=$_SESSION['msgRegister']?>">
                                    
           <div style="display: flex; justify-content: center;">
                <button type="submit" style="background: #7da7bd;color:#fff" class="w-25 btn">Salvar</button>
@@ -74,3 +76,4 @@ require_once('../actions/register.php')
 
 
 <script src="../assets/scripts/register.js"></script>
+<?php $_SESSION['msgRegister'] = 0 ?>

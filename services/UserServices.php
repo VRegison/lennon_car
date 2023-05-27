@@ -52,7 +52,7 @@ class UserService extends UserController
                $this->data['status'] = true;
                $this->data['msg'] = 'Logado com sucesso';
                // return $this->data;
-               header('Location:../pages/Home.php');
+               header('Location:../pages/home.php');
           } 
           else 
           {

@@ -38,6 +38,7 @@ class OrderService extends OrderServiceController
                     CONCAT(t3.marca, ' - ', t1.ano_carro) AS carro,
                     t1.placa_carro,
                     t1.data_chegada, t1.data_entrega,
+                    t1.corCarro,t1.KmAtual,
                     t1.valor_total_servico, t1.status
                    FROM ordem_servico AS t1
                    LEFT JOIN clientes AS t2 ON t1.id_cliente = t2.id
@@ -76,6 +77,7 @@ class OrderService extends OrderServiceController
                               t1.placa_carro,t3.marca,t3.modelo,
                               CONCAT(t3.marca, ' - ', t1.ano_carro) AS carro,
                               t1.data_chegada, t1.data_entrega,
+                              t1.corCarro,t1.KmAtual,
                               t1.valor_total_servico, t1.status
                          FROM ordem_servico AS t1
                          LEFT JOIN clientes AS t2 ON t1.id_cliente = t2.id

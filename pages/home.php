@@ -25,6 +25,8 @@ require_once('../components/nav.php');
                          <th class="table_td_header">Cliente</th>
                          <th class="table_td_header">Veiculo</th>
                          <th class="table_td_header">Placa</th>
+                         <th class="table_td_header">KM</th>
+                         <th class="table_td_header">Cor</th>
                          <th class="table_td_header">Entrada</th>
                          <th class="table_td_header">Saida</th>
                          <th class="table_td_header">Total($)</th>
@@ -40,6 +42,8 @@ require_once('../components/nav.php');
                               <td class="table_td"><?= $service['nome'] ?></td>
                               <td class="table_td"><?= $service['carro'] ?></td>
                               <td class="table_td"><?= $service['placa_carro'] ?></td>
+                              <td class="table_td"><?= $service['KmAtual'] ?></td>
+                              <td class="table_td"><?= $service['corCarro'] ?></td>
                               <td class="table_td"><?= $service['data_chegada'] ?></td>
                               <td class="table_td"><?= $service['data_entrega'] ?></td>
                               <td class="table_td"><?= $service['valor_total_servico'] ?></td>

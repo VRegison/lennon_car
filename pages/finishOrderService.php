@@ -48,7 +48,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                          <select class="form-control form-select" id="pecas">
                               <option value="">Selecione uma Peça</option>
                               <?php foreach ($listParts as $part) : ?>
-                                   <option value="<?= $part['id'] ?>"><?= $part['nome_peca'] ?></option>
+                                   <option value="<?= $part['id'].'_'.$_GET['id'] ?>"><?= $part['nome_peca'] ?></option>
                               <?php endforeach ?>
                          </select>
                     </div>
@@ -77,14 +77,14 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                     <div class="form-group">
                          <label>Valor Peça</label>
                          <input type="number" class="form-control" id="valorPeça" placeholder="Digite valor da peça">
-                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" class="btn btn-secondary mt-3">Adicionar Peça</button>
+                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" style="background: #7da7bd;color:#fff" class="btn  mt-3">Adicionar Peça</button>
                     </div>
                </div>
                <div class="col-md-6">
                     <div class="form-group">
                          <label>Valor Serviço</label>
-                         <input type="number" class="form-control" id="valorServico">
-                         <button type="button" onclick="adicionarOpcao('servicos','itensLista','valorServico','servico','','<?=$_GET['id']?>')" class="btn btn-secondary mt-3">Adicionar Serviço</button>
+                         <input  type="number" class="form-control" id="valorServico">
+                         <button type="button" onclick="adicionarOpcao('servicos','itensLista','valorServico','servico','','<?=$_GET['id']?>')" style="background: #7da7bd;color:#fff" class="btn  mt-3">Adicionar Serviço</button>
                     </div>
 
                </div>
@@ -115,7 +115,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
           </div>
           <div class="w-100 d-flex justify-content-center">
 
-               <button onclick="finalizaServico()" style="margin: 0px auto;" type="button" class="w-50 mb-4 mt-3 btn btn-secondary">Enviar</button>
+               <button onclick="finalizaServico()" style="margin: 0px auto; background: #7da7bd;color:#fff" type="button" class="w-50 mb-4 mt-3 btn ">Enviar</button>
           </div>
      </form>
 </div>

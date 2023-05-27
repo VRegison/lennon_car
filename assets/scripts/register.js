@@ -12,7 +12,7 @@ $(document).ready(function() {
 
         text: erroRegister,
 
-        duration: 1500
+        duration: 2000
 
     }).showToast();
  }
