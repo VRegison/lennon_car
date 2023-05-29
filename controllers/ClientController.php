@@ -43,6 +43,7 @@ class ClientController
 
 
 
+     // GET ATRIBUTE
      public function __get($atribute)
      {
           if (property_exists($this, $atribute)) {
