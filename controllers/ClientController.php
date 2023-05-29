@@ -13,6 +13,7 @@ class ClientController
      public function setClient($nameClient,$telefone,$email,$bairro,$rua)
      {
 
+          // VERIFICATIONS
           if(
                strlen(trim($nameClient)) > 0 &&
                strlen(trim($telefone)) > 0

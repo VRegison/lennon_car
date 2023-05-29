@@ -7,6 +7,7 @@ class UserController
      private string $password;
      public  array  $data;
 
+     // GETTERS
      public function getUser()
      {
           return $this->username;

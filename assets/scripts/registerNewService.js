@@ -1,3 +1,5 @@
+// Variaveis Globais 
+
 const services = document.getElementById("itensLista");
 const pecas = document.getElementById("itensListaPecas");
 const arrayEnvioService = [];
@@ -7,7 +9,9 @@ var removerObj = {};
 
 
 // FUNÇÕES
-function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService) {
+// Adiciona mais uma li
+function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
+{
 
      var select = document.getElementById(idLista);
      var list = document.getElementById(idUl);
@@ -65,7 +69,9 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService) {
      }
 }
 
-function listContainsValue(list, value) {
+// Verifica se li existe ou se ul esta vazia
+function listContainsValue(list, value) 
+{
      var lis = list.getElementsByTagName("li");
 
      // Verifica se a lista está vazia
@@ -87,7 +93,9 @@ function listContainsValue(list, value) {
      return false;
 }
 
-function finalizaServico() {
+// Finaliza Serviço
+function finalizaServico()
+{
      $.post("http://localhost/projetos/lennon_car/actions/finishService.php", { data: arrayEnvioService },
           function (resposta) {
                if (resposta) {
@@ -110,7 +118,9 @@ function finalizaServico() {
           })
 }
 
-function editOrderService() {
+// Edita Ordem de Serviço
+function editOrderService()
+{
 
 
 
@@ -129,6 +139,7 @@ function editOrderService() {
 
 // EVENTOS 
 
+// Remove item ul
 services.addEventListener("dblclick", function (event) {
      if (event.target.tagName.toLowerCase() === "li") {
 
