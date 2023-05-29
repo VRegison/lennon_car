@@ -21,7 +21,8 @@ class ClientService  extends ClientController
                $stmt = $this->db->getConnection()->prepare($sql);
                $stmt->execute();
      
-               while ($row = $stmt->fetch()) {
+               while ($row = $stmt->fetch())
+               {
                     $clients[] = $row;
                }
      

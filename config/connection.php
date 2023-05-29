@@ -10,6 +10,7 @@ class Database
 
      public function __construct($host, $dbname, $username, $password)
      {
+
           $this->host = $host;
           $this->dbname = $dbname;
           $this->username = $username;
@@ -19,6 +20,7 @@ class Database
      public function connect()
      {
           try {
+
                $dsn = "mysql:host={$this->host};dbname={$this->dbname}";
                $options = array(
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

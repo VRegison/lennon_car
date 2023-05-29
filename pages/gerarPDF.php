@@ -4,6 +4,12 @@
      }
 </style>
 <?php
+session_start();
+
+if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
+     header('Location:../index.php');
+}
+
 try {
      require '../vendor/autoload.php';
      require '../vendor/mpdf/mpdf/mpdf.php';

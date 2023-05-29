@@ -37,20 +37,17 @@
           </a>
 
 
-          <a style="width: 70%;"></a>
+          <a style="width: 65%;"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <img src="../assets/images/menu-aberto.png" />
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="li_nav nav-item active">
                          <a class="nav-link" href="../pages/home.php">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <!-- <li class="nav-item">
-                         <a class="nav-link" href="#">Link</a>
-                    </li> -->
-                    <li class="nav-item dropdown">
+                    <li class="li_nav nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Cadastros
                          </a>
@@ -60,15 +57,21 @@
                               <a class="dropdown-item" href="../pages/registerParts.php">Peças</a>
                          </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="li_nav nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Listagem
                          </a>
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Cliente</a>
-                              <a class="dropdown-item" href="#">Serviços</a>
-                              <a class="dropdown-item" href="#">Peças</a>
+                              <a class="dropdown-item" href="../pages/listClient.php">Cliente</a>
+                              <a class="dropdown-item" href="../pages/listService.php">Serviços</a>
+                              <a class="dropdown-item" href="../pages/listPart.php">Peças</a>
+                              <a class="dropdown-item" href="../pages/listCar.php">Carros</a>
                          </div>
+                    </li>
+                    <li class="li_nav nav-item ">
+                         <a class="nav-link " href="../pages/listStock.php" id="navbarDropdown" role="button"  aria-haspopup="true" aria-expanded="false">
+                              Estoque
+                         </a>
                     </li>
                </ul>
           </div>

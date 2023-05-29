@@ -204,6 +204,23 @@ class OrderService extends OrderServiceController
              // SAVING PARTS ARRAY
              foreach ($this->parts as $part)
              {
+
+
+
+
+               $stmtSelect = $this->db->getConnection()->prepare("SELECT qtde FROM estoque_produtos WHERE id_produto = :idPeca");
+               $stmtSelect->execute([':idPeca' => $part['idPeca']]);
+               $row = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+               $qtdeAtual = $row['qtde'];
+           
+               // Cálculo da nova quantidade
+               $novaQtde = $qtdeAtual - $part['qtde'];
+           
+               // Update para atualizar a coluna "qtde" na tabela "estoque_produtos"
+               $stmtUpdate = $this->db->getConnection()->prepare("UPDATE estoque_produtos SET qtde = :novaQtde WHERE id_produto = :idPeca");
+               $stmtUpdate->execute([':novaQtde' => $novaQtde, ':idPeca' => $part['idPeca']]);
+
+
                 $idOrdemServico =  $part['idOrderService'];
                 $stmtPeca->execute([
                      ':idOrdemServico' => $part['idOrderService'],

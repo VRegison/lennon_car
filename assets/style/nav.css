@@ -25,3 +25,20 @@
 .navbar-toggler-icon{
      color:#fff;
 }
+
+
+
+.navbar-expand-lg .navbar-collapse
+{
+     width: 78% !important;
+     justify-content: space-between;
+}
+
+.navbar-expand-lg .navbar-nav {
+     -webkit-box-orient: horizontal;
+     -webkit-box-direction: normal;
+     -ms-flex-direction: row;
+     flex-direction: row;
+     width: 100%;
+     justify-content: space-around;
+ }

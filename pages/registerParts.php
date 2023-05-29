@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
+     header('Location:../index.php');
+}
+
 require_once('../components/nav.php');
 require_once('../actions/register.php')
 ?>
