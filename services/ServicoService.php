@@ -12,9 +12,9 @@ class ServicoService extends ServiceController
      }
 
      // GET ALL SERVICOS NAMES
-     public function index()
+     public function index($SQL)
      {
-          $sql = "SELECT * FROM servicos";
+          $sql = "SELECT * FROM servicos $SQL";
           $result = $this->db->getConnection()->query($sql);
 
           $parts = $result->fetchAll(PDO::FETCH_ASSOC);

@@ -11,15 +11,6 @@ require '../utils/msgRoute.php';
 try
 {
 
-     // LIST CLIENTS AND CARS
-     $ClientService = new ClientService();
-     $carService    = new CarService();
-
-     $clients  = $ClientService->index();
-     $cars     = $carService->index();
-
-
-
      switch ($_POST['status']) {
           case  '1':
                $orderService = new OrderService();
@@ -32,7 +23,7 @@ try
           break;
 
           case  '2':
-
+               $ClientService = new ClientService();
                $retornoSet = $ClientService->setClient($_POST['cliente'],$_POST['contato'],$_POST['email'],$_POST['bairro'],$_POST['rua']);
 
                if($retornoSet['status'])
@@ -66,7 +57,7 @@ try
 
           case  '4':
                $Peca = new PartService();
-               $retornoSet = $Peca ->setName($_POST['namePeca']);
+               $retornoSet = $Peca ->setPart($_POST['namePeca'],$_POST['qtdePeca']);
 
                if($retornoSet['status'])
                {

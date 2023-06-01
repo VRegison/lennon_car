@@ -5,23 +5,25 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
 
-require("../actions/listOrderService.php");
-require_once('../components/nav.php');
+require_once '../actions/listAllClasses.php';
+require_once '../components/nav.php';
 
 ?>
 
 <section class="container__section">
 
      <div class="d-flex justify-content-center mt-4 mb-3">
-          <h1>Serviços</h1>
+          <h1>ESTOQUE</h1>
      </div>
      <div class="container__table">
-          <table id="tabelaServicos">
+          <table id="list">
                <thead>
                     <tr id="table_tr_header">
-                         <th class="table_td_header">Cod.Serviço</th>
-                         <th class="table_td_header">Serviço</th>
-                         <th class="table_td_header">Descrição</th>
+                         <th class="table_td_header">Cod.Estoque</th>
+                         <th class="table_td_header">Cod.Produto</th>
+                         <th class="table_td_header">Produto</th>
+                         <th class="table_td_header">Qtde</th>
+                         <th class="table_td_header">Editar</th>
                          <th class="table_td_header">Status</th>
 
                     </tr>
@@ -30,13 +32,15 @@ require_once('../components/nav.php');
                     <?php foreach ($listStock as $stock) :
 
                          $button = $stock['status'] == '1' 
-                         ? '<div  title="Clique Para Desativar"  style="cursor:pointer;margin:0 auto;width:20px;height:20px;background:#2ecc71;border-radius:50%"></div>' 
-                         : '<div  title="Clique Para Ativar"     style="cursor:pointer;margin:0 auto;width:20px;height:20px;background:#EA2027;border-radius:50%"></div>';
+                         ? '<div  title="Clique Para Desativar" onclick="desativeActive(\'2\', '.$stock['id'].', \'estoque_produtos\')" style="cursor:pointer;margin:0 auto;width:20px;height:20px;background:#2ecc71;border-radius:50%"></div>' 
+                         : '<div  title="Clique Para Ativar"    onclick="desativeActive(\'1\', '.$stock['id'].', \'estoque_produtos\')"  style="cursor:pointer;margin:0 auto;width:20px;height:20px;background:#EA2027;border-radius:50%"></div>';
                     ?>
                          <tr id="table_linha">
                               <td class="table_td" style="width: 5%;"><?= $stock['id'] ?></td>
+                              <td class="table_td" style="width: 5%;"><?= $stock['idPeca'] ?></td>
                               <td class="table_td"><?= $stock['nome_peca'] ?></td>
                               <td class="table_td"><?= $stock['qtde'] ?></td>
+                              <td class="table_td" style="width: 5%;">teste</td>
                               <td class="table_td" style="width: 5%;"><?= $button ?></td>
 
 
@@ -50,6 +54,7 @@ require_once('../components/nav.php');
 
 </section>
 
-<script src="../assets/scripts/home.js"></script>
+<script src="../assets/scripts/list.js"></script>
+
 
 <?php $_SESSION['registro'] = 0 ?>

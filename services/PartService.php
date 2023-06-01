@@ -11,10 +11,22 @@ class PartService extends PartController
           $this->db->connect();
      }
 
-
-     public function index()
+     // EDIT STOCK
+     public function updateStock($id,$qtde)
      {
-          $sql = "SELECT * FROM pecas";
+          $sql = "INSERT INTO estoque_produtos (id_produto,qtde) VALUES (:id_produto,:qtde)";
+          $stmt = $this->db->getConnection()->prepare($sql);
+          $stmt->bindParam(':id_produto', $id);
+          $stmt->bindParam(':qtde', $qtde);
+
+          $result =  $stmt->execute();
+
+     }
+
+     //GET ALL PARTS
+     public function index($SQL)
+     {
+          $sql = "SELECT * FROM pecas $SQL";
           $result = $this->db->getConnection()->query($sql);
 
           $parts = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -22,27 +34,34 @@ class PartService extends PartController
           return $parts;
      }
 
+     //GET ALL STOCK
      public function indexStock()
      {
           $sql = "
-          SELECT 
-          t1.id,t2.nome_peca,t1.qtde
-          FROM		estoque_produtos AS t1
-          LEFT JOIN 	pecas 			 AS t2 	ON t1.id_produto = t2.id
-          
-          WHERE t2.status = 1
+          SELECT
+               t1.id,
+               t2.id AS idPeca,
+               t2.nome_peca,
+               t1.qtde,
+               t1.status
+          FROM
+               estoque_produtos AS t1
+          LEFT JOIN pecas AS t2
+          ON
+               t1.id_produto = t2.id  
+          ORDER BY t1.status ASC, t2.nome_peca ASC
           ";
           $result = $this->db->getConnection()->query($sql);
 
-          $stock = $result->fetchAll(PDO::FETCH_ASSOC);
+          $stock = $result->fetchAll();
 
           return $stock;
      }
 
-
-     public function desativeAtivePart($status,$id)
+     //DISABLE AND ENABLE
+     public function desativeAtivePart($status,$id,$table)
      {
-          $sqlSelect = "UPDATE pecas SET status = :status WHERE id = :id";
+          $sqlSelect = "UPDATE $table SET status = :status WHERE id = :id";
           $stmtSelect = $this->db->getConnection()->prepare($sqlSelect);
           $stmtSelect->bindParam(':status', $status);
           $stmtSelect->bindParam(':id', $id);
@@ -50,10 +69,11 @@ class PartService extends PartController
           $stmtSelect->execute();
      }
      
+     //INSERT PART AND STOCK
      public function insert()
      {
 
-          $sqlSelect = "SELECT * FROM `pecas` WHERE nome_peca = :nome";
+          $sqlSelect = "SELECT * FROM pecas WHERE nome_peca = :nome";
           $stmtSelect = $this->db->getConnection()->prepare($sqlSelect);
           $stmtSelect->bindParam(':nome', $this->getName());
           $stmtSelect->execute();
@@ -76,6 +96,9 @@ class PartService extends PartController
 
               if($result)
               {
+               $lastInsertedId =$this->db->getConnection()->lastInsertId();
+               $this->updateStock($lastInsertedId,$this->getQtde());
+
                $data['status'] = true;
                $data['msg'] = 'Peça Criada!';
               }
@@ -95,4 +118,7 @@ class PartService extends PartController
 
 
      }
+
+
+
 }

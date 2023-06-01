@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
+{
+     header('Location:./pages/home.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

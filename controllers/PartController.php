@@ -4,14 +4,17 @@
 class PartController
 {
      private  string $name;
+     private  string $qtde;
 
 
 
-     public function setName($name)
+     public function setPart($name,$qtde)
      {
-          if(is_string($name) && strlen($name) > 3)
+          if(is_string($name) && strlen($name) > 3 && $qtde > 0)
           {
                $this->name = $name;
+               $this->qtde = $qtde;
+
                
                $data['status'] = true;
                return $data;
@@ -28,5 +31,11 @@ class PartController
      public function getName()
      {
           return $this->name;
+     } 
+
+
+     public function getQtde()
+     {
+          return $this->qtde;
      } 
 }

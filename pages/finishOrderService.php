@@ -4,9 +4,12 @@ session_start();
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
+$SQLparts = ' WHERE status = 1';
+$SQLservice = ' WHERE status = 1';
+
 
 require_once '../components/nav.php';
-require_once '../actions/listOrderService.php';
+require_once '../actions/listAllClasses.php';
 require_once '../utils/masks.php';
 
 $data = $OrderService->getOneOrderService($_GET['id']);
@@ -51,7 +54,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                <div class="col-md-4">
                     <div class="form-group">
                          <label>Peças</label>
-                         <select class="form-control form-select" id="pecas">
+                         <select class="form-control selectClient form-select" id="pecas">
                               <option value="">Selecione uma Peça</option>
                               <?php foreach ($listParts as $part) : ?>
                                    <option value="<?= $part['id'].'_'.$_GET['id'] ?>"><?= $part['nome_peca'] ?></option>
@@ -69,7 +72,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                <div class="col-md-6">
                     <div class="form-group">
                          <label for="estado">Serviços</label>
-                         <select class="form-control form-select" id="servicos">
+                         <select class="form-control selectClient form-select" id="servicos">
                               <option value="">Selecione Um Serviço</option>
                               <?php foreach ($listServico as $servico) : ?>
                                    <option value="<?= $servico['id'] ?>"><?= $servico['nome_servico'] ?></option>

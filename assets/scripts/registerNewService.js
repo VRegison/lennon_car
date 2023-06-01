@@ -8,6 +8,12 @@ var arrayRemoverServico = [];
 var removerObj = {};
 
 
+
+$(document).ready(function() {
+     $('.selectClient').select2();
+ });
+
+
 // FUNÇÕES
 // Adiciona mais uma li
 function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
@@ -96,7 +102,7 @@ function listContainsValue(list, value)
 // Finaliza Serviço
 function finalizaServico()
 {
-     $.post("http://localhost/projetos/lennon_car/actions/finishService.php", { data: arrayEnvioService },
+     $.post("http://localhost/projetos/lennon_car/actions/finalizingServiceOrder.php", { data: arrayEnvioService },
           function (resposta) {
                if (resposta) {
                     Toastify({

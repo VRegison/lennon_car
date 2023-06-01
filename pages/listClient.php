@@ -1,12 +1,15 @@
 <?php
+
+
 session_start();
 
-if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
+if (empty($_SESSION['user'] || isset($_SESSION['user'])))
+{
      header('Location:../index.php');
 }
 
-require("../actions/register.php");
-require_once('../components/nav.php');
+require_once '../components/nav.php';
+require_once '../actions/listAllClasses.php';
 
 ?>
 
@@ -16,7 +19,7 @@ require_once('../components/nav.php');
           <h1>Clientes</h1>
      </div>
      <div class="container__table">
-          <table id="tabelaServicos">
+          <table id="list">
                <thead>
                     <tr id="table_tr_header">
                          <th class="table_td_header">Cod.Cliente</th>
@@ -33,8 +36,8 @@ require_once('../components/nav.php');
                     <?php foreach ($clients as $client) :
 
                          $button = $client['status'] == '1'        
-                         ? '<div  title="Clique Para Desativar"  style="cursor:pointer; margin:0 auto;width:20px;height:20px;background:#2ecc71;border-radius:50%"></div>' 
-                         : '<div  title="Clique Para Ativar"     style="cursor:pointer; margin:0 auto;width:20px;height:20px;background:#EA2027;border-radius:50%"></div>';
+                         ? '<div  title="Clique Para Desativar"   onclick="desativeActive(\'2\', '.$client['id'].', \'clientes\')" style="cursor:pointer; margin:0 auto;width:20px;height:20px;background:#2ecc71;border-radius:50%"></div>' 
+                         : '<div  title="Clique Para Ativar"      onclick="desativeActive(\'1\', '.$client['id'].', \'clientes\')" style="cursor:pointer; margin:0 auto;width:20px;height:20px;background:#EA2027;border-radius:50%"></div>';
                     ?>
                          <tr id="table_linha">
 
@@ -58,6 +61,6 @@ require_once('../components/nav.php');
 
 </section>
 
-<script src="../assets/scripts/home.js"></script>
+<script src="../assets/scripts/list.js"></script>
 
 <?php $_SESSION['registro'] = 0 ?>

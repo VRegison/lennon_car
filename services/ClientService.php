@@ -11,12 +11,12 @@ class ClientService  extends ClientController
           $this->db->connect();
      }
 
-     // GET ALL CLIENTS
-     public function index()
+     // GET ALL CLIENTS ACTIVE
+     public function index($SQL)
      {
           try
           {
-               $sql = "SELECT * FROM clientes WHERE status = 1";
+               $sql = "SELECT * FROM clientes $SQL";
 
                $stmt = $this->db->getConnection()->prepare($sql);
                $stmt->execute();
@@ -33,8 +33,7 @@ class ClientService  extends ClientController
                return $th->getMessage();
           }
      }
-
-
+     
      public function insert()
      {
 

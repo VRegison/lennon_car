@@ -19,6 +19,13 @@ require_once('../actions/register.php')
                <input type="text" name="namePeca" class="form-control" placeholder="Nome da Peça" required>
           </div>
 
+
+          <div class="form-group  mt-3">
+               <label for="exampleInputPassword1">Qtde Peça</label>
+               <input type="number" name="qtdePeca" class="form-control" placeholder="Quantidade de Peça(s)" required>
+          </div>
+
+
           <input type="hidden" name="status" value="4">
           <input type="hidden" id="msgRegister" value="<?=$_SESSION['msgRegister']?>">
 

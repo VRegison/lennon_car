@@ -4,9 +4,9 @@ session_start();
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
-
+$SQLclients = "WHERE status = 1";
 require_once('../components/nav.php');
-require_once('../actions/register.php')
+require_once('../actions/listAllClasses.php')
 ?>
 
 <div class="container mt-5">

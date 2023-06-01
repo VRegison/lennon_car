@@ -6,7 +6,7 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 }
 
 require_once '../components/nav.php';
-require_once '../actions/listOrderService.php';
+require_once '../actions/listAllClasses.php';
 require_once '../utils/masks.php';
 
 $data       = $OrderService->getOneOrderService($_GET['id']);
