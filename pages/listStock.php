@@ -39,8 +39,8 @@ require_once '../components/nav.php';
                               <td class="table_td" style="width: 5%;"><?= $stock['id'] ?></td>
                               <td class="table_td" style="width: 5%;"><?= $stock['idPeca'] ?></td>
                               <td class="table_td"><?= $stock['nome_peca'] ?></td>
-                              <td class="table_td"><?= $stock['qtde'] ?></td>
-                              <td class="table_td" style="width: 5%;">teste</td>
+                              <td class="table_td" id="peca_<?=$stock['idPeca']?>"><?= $stock['qtde'] ?></td>
+                              <td class="table_td" style="width: 5%;" onclick="editQtde(<?=$stock['idPeca'].','.$stock['qtde'].','.$stock['id']?>)"><button id="editar_<?=$stock['idPeca']?>">Editar</button></td>
                               <td class="table_td" style="width: 5%;"><?= $button ?></td>
 
 

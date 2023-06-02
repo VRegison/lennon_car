@@ -72,6 +72,16 @@ try
 
           break;
 
+          case  '5':
+               print_r($_POST);
+               $Peca = new PartService();
+               $retornoInsert = $Peca->editStock($_POST['idStock'],$_POST['value']);
+
+               if($retornoInsert['status'])  msgRouter($retornoInsert['msg'],'../pages/listStock.php');
+               else msgRouter($retornoInsert['msg'],'../pages/registerParts.php');
+
+          break;
+
      }
 } 
 catch (\Throwable $th)

@@ -120,5 +120,35 @@ class PartService extends PartController
      }
 
 
-
+     public function editStock($id, $qtde)
+     {
+         try {
+             // Verificação dos valores do ID e quantidade (exemplo)
+             if ($id <= 0 || $qtde <= 0) {
+                 throw new Exception('ID ou quantidade inválida');
+             }
+     
+             $sql = "UPDATE estoque_produtos SET qtde = :qtde WHERE id = :id";
+             $stmt = $this->db->getConnection()->prepare($sql);
+             $stmt->bindParam(':id', $id);
+             $stmt->bindParam(':qtde', $qtde);
+     
+             if ($stmt->execute()) {
+                 $data['status'] = true;
+                 $data['msg'] = 'Estoque alterado !';
+                 return $data;
+             } else {
+                 throw new Exception('Erro ao executar a atualização do estoque');
+             }
+         } catch (\Throwable $th) {
+             // Tratar o erro de forma adequada, lançar exceção personalizada ou retornar uma resposta de erro
+             $data['status'] = false;
+             $data['msg'] = 'Erro: ' . $th->getMessage();
+             return $data;
+         } finally {
+             // Liberar recursos, como fechar a conexão com o banco de dados (exemplo)
+             $stmt = null;
+         }
+     }
+     
 }
