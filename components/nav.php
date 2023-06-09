@@ -55,6 +55,8 @@
                               <a class="dropdown-item" href="../pages/registerClient.php">Cliente</a>
                               <a class="dropdown-item" href="../pages/registerService.php">Serviços</a>
                               <a class="dropdown-item" href="../pages/registerParts.php">Peças</a>
+                              <a class="dropdown-item" href="../pages/registerCar.php">Carros</a>
+
                          </div>
                     </li>
                     <li class="li_nav nav-item dropdown">
@@ -69,9 +71,12 @@
                          </div>
                     </li>
                     <li class="li_nav nav-item ">
-                         <a class="nav-link " href="../pages/listStock.php" id="navbarDropdown" role="button"  aria-haspopup="true" aria-expanded="false">
+                         <a class="nav-link " href="../pages/listStock.php" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                               Estoque
                          </a>
+                    </li>
+                    <li class="li_nav nav-item active">
+                         <a class="nav-link" onclick="logout()" href="#">Sair <span class="sr-only">(current)</span></a>
                     </li>
                </ul>
           </div>
@@ -86,5 +91,20 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js" integrity="sha512-0Yc4Jv5wX4+mjDuLxmHFGqgDtMFAEBLpPq/0nPVmAOwHPMkYXiS1YVYWTcrVQztftk/32089DDTyrCJO8hBCZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+     <script>
+          function logout() {
+               $.post("http://localhost/projetos/lennon_car/actions/listAllClasses.php", {
+                         code: '2',
+                    },
+                    function(resposta) {
+                         if(resposta == '2')
+                         {
+                              location.reload();
+                         }
+                    })
+          }
+     </script>
 
 </html>

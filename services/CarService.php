@@ -1,6 +1,7 @@
 <?php
+require_once '../controllers/CarController.php';
 
-class CarService
+class CarService extends CarController
 {
      private $db;
 
@@ -33,4 +34,48 @@ class CarService
                return $th->getMessage();
           }
      }
+
+      //INSERT PART AND STOCK
+      public function insert()
+      {
+ 
+           $sqlSelect = "SELECT * FROM carros WHERE  marca = :marca";
+           $stmtSelect = $this->db->getConnection()->prepare($sqlSelect);
+           $stmtSelect->bindParam(':marca', $this->getMarca());
+
+           $stmtSelect->execute();
+           
+           $results = $stmtSelect->fetchAll();
+           
+           if (count($results) > 0)
+           {
+               return false;
+           }
+ 
+           else
+           {
+               $sql = "INSERT INTO carros (modelo,marca) VALUES (:modelo,:marca)";
+               $stmt = $this->db->getConnection()->prepare($sql);
+               $stmt->bindParam(':modelo', $this->getModelo());
+               $stmt->bindParam(':marca', $this->getMarca());
+               $result =  $stmt->execute();
+ 
+               if($result)
+               {
+                    return true;
+               }
+ 
+               else
+               {
+                    return false;
+               }
+ 
+           }
+           
+ 
+ 
+ 
+ 
+ 
+      }
 }

@@ -8,83 +8,104 @@ require '../services/ServicoService.php';
 require '../services/PartService.php';
 require '../utils/msgRoute.php';
 
-try
-{
+try {
 
+     // REGISTES
      switch ($_POST['status']) {
           case  '1':
                $orderService = new OrderService();
-               $orderService->setOrderService($_POST['client'], $_POST['car'], $_POST['year'], $_POST['place'],$_POST['color'], $_POST['km']);
+               $orderService->setOrderService($_POST['client'], $_POST['car'], $_POST['year'], $_POST['place'], $_POST['color'], $_POST['km']);
                $return = $orderService->insert();
 
-               if ($return) $_SESSION['registro'] = 1;
-               header('Location:../pages/home.php');
+               if ($return)
+               {
+                    echo 1;
+               }
+               else
+               {
 
-          break;
+                    echo 2;
+               }
+
+               break;
 
           case  '2':
                $ClientService = new ClientService();
-               $retornoSet = $ClientService->setClient($_POST['cliente'],$_POST['contato'],$_POST['email'],$_POST['bairro'],$_POST['rua']);
+               $retornoSet = $ClientService->setClient($_POST['cliente'], $_POST['contato'], $_POST['email'], $_POST['bairro'], $_POST['rua']);
 
-               if($retornoSet['status'])
-               {
+               if ($retornoSet['status']) {
                     $retornoInsert = $ClientService->insert();
 
-                    if($retornoInsert['status'])  msgRouter($retornoInsert['msg'],'../pages/registerClient.php');
-                    else msgRouter($retornoInsert['msg'],'../pages/registerClient.php');
-               }
+                    if ($retornoInsert['status'])  msgRouter($retornoInsert['msg'], '../pages/registerClient.php');
+                    else msgRouter($retornoInsert['msg'], '../pages/registerClient.php');
+               } else   msgRouter($retornoSet['msg'], '../pages/registerClient.php');
 
-               else   msgRouter($retornoSet['msg'],'../pages/registerClient.php');
-
-          break;
+               break;
 
           case  '3':
 
                $Service    = new ServicoService();
-               $retornoSet = $Service->setService($_POST['nameService'],$_POST['descriptionService']);
+               $retornoSet = $Service->setService($_POST['nameService'], $_POST['descriptionService']);
 
-               if($retornoSet['status'])
-               {
-                    $retornoInsert = $Service->insert();
-
-                    if($retornoInsert['status'])  msgRouter($retornoInsert['msg'],'../pages/registerService.php');
-                    else msgRouter($retornoInsert['msg'],'../pages/registerService.php');
+               if ($retornoSet) {
+                    if ($Service->insert()) {
+                         echo 1;
+                    } else {
+                         echo 2;
+                    }
+               } else {
+                    echo 2;
                }
 
-               else   msgRouter($retornoSet['msg'],'../pages/registerService.php');
 
-          break;
+               break;
 
           case  '4':
                $Peca = new PartService();
-               $retornoSet = $Peca ->setPart($_POST['namePeca'],$_POST['qtdePeca']);
+               $retornoSet = $Peca->setPart($_POST['namePeca'], $_POST['qtdePeca']);
 
-               if($retornoSet['status'])
-               {
-                    $retornoInsert = $Peca->insert();
-
-                    if($retornoInsert['status'])  msgRouter($retornoInsert['msg'],'../pages/registerParts.php');
-                    else msgRouter($retornoInsert['msg'],'../pages/registerParts.php');
+               if ($retornoSet) {
+                    if($retornoInsert = $Peca->insert())
+                    {
+                        echo 1; 
+                    }
+                    else 
+                    {
+                         echo 0;
+                    }
                }
+               else
+               {
+                    echo 0;
+               }
+          
 
-               else   msgRouter($retornoSet['msg'],'../pages/registerParts.php');
-               
-
-          break;
+               break;
 
           case  '5':
-               print_r($_POST);
                $Peca = new PartService();
-               $retornoInsert = $Peca->editStock($_POST['idStock'],$_POST['value']);
+               $retornoInsert = $Peca->editStock($_POST['idStock'], $_POST['value']);
 
-               if($retornoInsert['status'])  msgRouter($retornoInsert['msg'],'../pages/listStock.php');
-               else msgRouter($retornoInsert['msg'],'../pages/registerParts.php');
+               if ($retornoInsert['status'])  msgRouter($retornoInsert['msg'], '../pages/listStock.php');
+               else msgRouter($retornoInsert['msg'], '../pages/registerParts.php');
 
-          break;
+               break;
 
+          case  '6':
+               $Peca = new CarService();
+
+               if ($Peca->setCar($_POST['modelo'], $_POST['marca'])) {
+                    if ($Peca->insert()) {
+                         echo 1;
+                    } else {
+                         echo 2;
+                    }
+               }
+
+
+
+               break;
      }
-} 
-catch (\Throwable $th)
-{
+} catch (\Throwable $th) {
      echo $th->getMessage() . '--' . $th->getFile() . '--->' . $th->getLine();
 }

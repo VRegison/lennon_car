@@ -36,9 +36,8 @@ class ServicoService extends ServiceController
           
           if (count($results) > 0)
           {
-              $data['status'] = false;
-              $data['msg'] = 'Servico já existente !';
-              return $data;
+              
+              return false;
           }
 
           else
@@ -53,17 +52,14 @@ class ServicoService extends ServiceController
 
               if($result)
               {
-               $data['status'] = true;
-               $data['msg'] = 'Peça Criada!';
+                    return  true;
               }
 
               else
               {
-               $data['status'] = false;
-               $data['msg'] = 'Error ao criar peça, verificar com o suporte !';
+                    return false;
               }
 
-              return $data;
           }
 
 

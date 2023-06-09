@@ -18,6 +18,7 @@ class ClientController
                strlen(trim($nameClient)) > 0 &&
                strlen(trim($telefone)) > 0
            )
+           
            {
                $this->nameClient   = $nameClient;
                $this->telefone     = $telefone;

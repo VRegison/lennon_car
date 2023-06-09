@@ -11,6 +11,9 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 }
 
 try {
+     date_default_timezone_set('America/Sao_Paulo');
+
+
      require '../vendor/autoload.php';
      require '../vendor/mpdf/mpdf/mpdf.php';
      require '../services/OrderService.php';
@@ -21,16 +24,38 @@ try {
      $order    = $OrderService->getOneOrderService($_GET['id']);
      $parts    = $OrderService->getAllPartsOrderService($_GET['id']);
      $services = $OrderService->getAllServiceOrderService($_GET['id']);
+     $data_atual = new DateTime();
+     $data_formatada = $data_atual->format('d \d\e F \d\e Y');
+     
+     $mes_portugues = [
+         'January'   => 'Janeiro',
+         'February'  => 'Fevereiro',
+         'March'     => 'Março',
+         'April'     => 'Abril',
+         'May'       => 'Maio',
+         'June'      => 'Junho',
+         'July'      => 'Julho',
+         'August'    => 'Agosto',
+         'September' => 'Setembro',
+         'October'   => 'Outubro',
+         'November'  => 'Novembro',
+         'December'  => 'Dezembro'
+     ];
+     
+     $data_formatada = strtr($data_formatada, $mes_portugues);
+     
+     echo $data_formatada;
 
      foreach($parts as $part)
      {
          $valorTotalPecas += $part['valor'] * $part['qtde'];
+         $totalQtdePecas = $part['valor'] * $part['qtde'];
          $linhaPecas  .= '
           <tr> 
                <td style="text-align:center; border: 1px solid #000;">'.$part['nome_peca'].'</td>
                <td style="text-align:center;border: 1px solid #000;">'.$part['qtde'].'</td>
-               <td style="text-align:center;border: 1px solid #000;">'.$part['valor'].'</td>
-               <td style="text-align:center;border: 1px solid #000;">'.$part['valor'] * $part['qtde'].'</td>
+               <td style="text-align:center;border: 1px solid #000;">'.number_format($part['valor'],2,",",".").'</td>
+               <td style="text-align:center;border: 1px solid #000;">'.number_format($totalQtdePecas,2,",",".").'</td>
           </tr> 
           
           ';
@@ -41,9 +66,9 @@ try {
      {
          $valorTotalService += $service['valor'];
          $linhaService  .= '
-          <tr>
+          <tr  style="width: 100px;">
                <td style="text-align:left; border: 1px solid #000;">'.$service['nome_servico'].'</td>
-               <td style="text-align:center;border: 1px solid #000;"> R$'.$service['valor'].'</td>
+               <td style="text-align:center;border: 1px solid #000;"> R$'.number_format($service['valor'],2,",",".").'</td>
           </tr>
           ';
      }
@@ -91,8 +116,8 @@ try {
                          <th style="background:#F0E68C	;border: 1px solid #000; padding: 5px;text-align:left">Cliente : '.$order['nome'].'&emsp;&emsp; Telefone : '.formatCel($order['telefone']).' </th>
                     </tr>
                     <tbody>
-                         <tr style="border: 1px solid #333;"><td style="text-align:left"><b>Carro</b> : '.$order['modelo'].'&emsp;&emsp;<b>Marca</b> : '.$order['marca'].' </td></tr>
-                         <tr style="border: 1px solid #333;"><td style="text-align:left"><b>Placa</b> : '.$order['placa_carro'].'&emsp;&emsp;<b>Cor</b> : Prata&emsp;&emsp;<b>KM</b> :116812 </td></tr>
+                         <tr style="border: 1px solid #333;"><td style="text-align:left"><b>Carro</b> : '.$order['modelo'].'&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<b>Marca</b> : '.$order['marca'].' </td></tr>
+                         <tr style="border: 1px solid #333;"><td style="text-align:left"><b>Placa</b> : '.$order['placa_carro'].'&emsp;&emsp;<b>Cor</b> : '.$order['corCarro'].'&emsp;&emsp;<b>KM</b> : '.$order['KmAtual'].' </td></tr>
 
                     </tbody>
                </thead>';
@@ -113,7 +138,7 @@ try {
 
                <tr>
                     <td style="text-align:right; border: 1px solid #000;" colspan="3"><b>Valor total das peças:</b></td>
-                    <td style="text-align:center;border: 1px solid #000;">R$'.$valorTotalPecas.'</td>
+                    <td style="text-align:center;width: 120px;border: 1px solid #000;">R$'.number_format($valorTotalPecas,2,",",".").'</td>
 
                </tr>
           </tbody>
@@ -135,7 +160,7 @@ try {
 
           <tr>
           <td style="text-align:right; border: 1px solid #000;" colspan="1"><b>Valor total serviços:</b></td>
-          <td style="text-align:center;border: 1px solid #000;"> R$'.$valorTotalService.'</td>
+          <td style="text-align:center;width: 120px;border: 1px solid #000;"> R$'.number_format($valorTotalService,2,",",".").'</td>
 
      </tr>
           </tbody>
@@ -148,7 +173,7 @@ try {
                <thead style="background-color: #333; color: #fff;">
                     <tr>
                          <th  style="background:#F0E68C;border: 1px solid #000; padding: 5px;">
-                              Valor total peças e serviços R$'.$total.'
+                              Valor total peças e serviços R$'.number_format($total,2,",",".").'
                          </th>
                     </tr>
                </thead>
@@ -174,7 +199,7 @@ try {
                          <br />
                          <br />
 
-                        <h2 style="text-align: center;" > Fortaleza 17 de Maio de 2023</h2>
+                        <h2 style="text-align: center;" > Fortaleza '.$data_formatada.'</h2>
                     </td>
                     </tr>
                </tbody>

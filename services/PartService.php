@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/PartController.php';
+require '../controllers/PartController.php';
 
 class PartService extends PartController
 {
@@ -18,6 +18,7 @@ class PartService extends PartController
           $stmt = $this->db->getConnection()->prepare($sql);
           $stmt->bindParam(':id_produto', $id);
           $stmt->bindParam(':qtde', $qtde);
+          logs($this->db->getConnection(),$_SESSION['idUser'],'INSERT','estoque_produtos','Inserindo novo produto');
 
           $result =  $stmt->execute();
 
@@ -133,11 +134,15 @@ class PartService extends PartController
              $stmt->bindParam(':id', $id);
              $stmt->bindParam(':qtde', $qtde);
      
-             if ($stmt->execute()) {
+             if ($stmt->execute())
+             {
                  $data['status'] = true;
                  $data['msg'] = 'Estoque alterado !';
+                 logs($this->db->getConnection(),$_SESSION['idUser'],'UPDATE','estoque_produtos','Alterando estoque');
                  return $data;
-             } else {
+             } 
+             else
+             {
                  throw new Exception('Erro ao executar a atualização do estoque');
              }
          } catch (\Throwable $th) {

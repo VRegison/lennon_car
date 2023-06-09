@@ -40,7 +40,7 @@ require_once '../components/nav.php';
                               <td class="table_td" style="width: 5%;"><?= $stock['idPeca'] ?></td>
                               <td class="table_td"><?= $stock['nome_peca'] ?></td>
                               <td class="table_td" id="peca_<?=$stock['idPeca']?>"><?= $stock['qtde'] ?></td>
-                              <td class="table_td" style="width: 5%;" onclick="editQtde(<?=$stock['idPeca'].','.$stock['qtde'].','.$stock['id']?>)"><button id="editar_<?=$stock['idPeca']?>">Editar</button></td>
+                              <td class="table_td" style="width: 5%;" onclick="editQtde(<?=$stock['idPeca'].','.$stock['qtde'].','.$stock['id']?>)"><button style="ackground: transparent;border: none;" name="editar" id="editar_<?=$stock['idPeca']?>"><img id="img_<?=$stock['idPeca']?>" style="width:24px;cursor:pointer;" src="../assets/images/edit.png" alt=""></button></td>
                               <td class="table_td" style="width: 5%;"><?= $button ?></td>
 
 

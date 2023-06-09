@@ -10,7 +10,7 @@ require_once('../components/nav.php');
 
 <div class="container mt-5">
     <h2 class="text-center">Cadastrando Cliente</h2>
-    <form  method="post" action="../actions/register.php">
+    <form  method="post">
         <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -24,13 +24,13 @@ require_once('../components/nav.php');
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="senha">Contato</label>
-                        <input type="text" placeholder="Telefone cliente" class="form-control" name="contato">
+                        <input type="text" placeholder="Telefone cliente" class="form-control" id="contato" name="contato">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="confirmar-senha">Email</label>
-                        <input type="text" placeholder="Digite um email" class="form-control" name="email">
+                        <input type="text" placeholder="Digite um email" class="form-control"  id="email" name="email">
                     </div>
                 </div>
 
@@ -39,25 +39,22 @@ require_once('../components/nav.php');
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="confirmar-senha">Bairro</label>
-                        <input type="text" placeholder="Bairro Cliente" class="form-control" name="bairro">
+                        <input type="text" placeholder="Bairro Cliente" class="form-control" id="bairro" name="bairro">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="confirmar-senha">Rua</label>
-                        <input type="text" placeholder="Rua Cliente" class="form-control" name="rua">
+                        <input type="text" placeholder="Rua Cliente" class="form-control" id="rua" name="rua">
                     </div>
                 </div>
             </div>
         </div>
 
-        <input type="hidden" name="status" value="2">
-        <input type="hidden" id="msgRegister" value="<?=$_SESSION['msgRegister']?>">
-
 
         <div style="display: flex; align-items: center;justify-content: center;">
-            <button type="submit" style="background: #7da7bd;color:#fff;" class="w-25 btn">Salvar</button>
+            <button type="submit" onclick="register(event,'2')" style="background: #7da7bd;color:#fff;" class="w-25 btn">Salvar</button>
         </div>
     </form>
 
@@ -66,4 +63,3 @@ require_once('../components/nav.php');
 
 
 <script src="../assets/scripts/register.js"></script>
-<?php $_SESSION['msgRegister'] = 0 ?>

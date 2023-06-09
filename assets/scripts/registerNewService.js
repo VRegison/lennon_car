@@ -8,7 +8,6 @@ var arrayRemoverServico = [];
 var removerObj = {};
 
 
-
 $(document).ready(function() {
      $('.selectClient').select2();
  });
@@ -47,12 +46,43 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
 
      // Obtém o valor selecionado
      var selectedValue = select.value;
-     // Verifica se o valor selecionado não é vazio e não existe na lista
-     if (
-          selectedValue !== "" &&
+
+     if(selectedValue == "")
+     {
+          Toastify({
+               text: "Preencha todos os campos!",
+               duration: 1500
+          }).showToast();
+          return;
+     }
+
+     if(title == 'peca' && qtdePeca <= 0)
+     {
+          Toastify({
+               text: "Preencha a Quantidade !",
+               duration: 1500
+          }).showToast();
+          return;
+     }
+
+
+     if(valor.value <= 0)
+     {
+          Toastify({
+               text: "Preencha o valor !",
+               duration: 1500
+          }).showToast();
+          return;
+     }
+
+
+     if 
+     (
           !listContainsValue(list, select.options[select.selectedIndex].text) &&
+          selectedValue !== ""   &&
           valor.value > 0
-     ) {
+     )
+     {
           var newLi = document.createElement("li");
 
           const valorLi = title == 'peca'
@@ -69,7 +99,7 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
 
      } else {
           Toastify({
-               text: "Preencha todos os campos!",
+               text: "Valor já existe !",
                duration: 1500
           }).showToast();
      }
@@ -111,7 +141,7 @@ function finalizaServico()
                     }).showToast();
 
                     setTimeout(() => {
-                         window.location.href = '../../pages/home.php';
+                         window.location.href = 'http://localhost/projetos/lennon_car/pages/home.php';
                     }, 2000)
 
                }
@@ -134,7 +164,17 @@ function editOrderService()
           function (resposta) {
 
                if (arrayEnvioService.length > 0) {
-                    console.log(finalizaServico())
+                    finalizaServico()
+               }
+               else
+               {
+                    Toastify({
+
+                         text: 'Editado com sucesso !',
+                 
+                         duration: 2000
+                 
+                     }).showToast();
                }
 
 

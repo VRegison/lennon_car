@@ -25,11 +25,18 @@ try
      $listStock     = $Parts->indexStock();
 
 
-
+     // DISABLED
      if($_POST['code'] == 1)
      {
           $Parts->desativeAtivePart($_POST['status'],$_POST['id'],$_POST['table']);
           echo 1;
+     }
+
+     // LOGOUT
+     if($_POST['code'] == 2)
+     {
+          session_destroy();
+          echo 2;
      }
      
 }

@@ -2,6 +2,8 @@
 session_start();
 require "../controllers/UserController.php";
 require "../config/connection.php";
+require "../utils/logFunction.php";
+
 
 class UserService extends UserController
 {
@@ -40,7 +42,7 @@ class UserService extends UserController
           $stmt = $this->db->getConnection()->prepare($sql);
 
           $stmt->bindParam(':usuario', $this->getUser());
-          $stmt->bindParam(':pass', $this->getPassword());
+          $stmt->bindParam(':pass', md5($this->getPassword()));
 
           $stmt->execute();
 
@@ -48,11 +50,10 @@ class UserService extends UserController
           {
                $dataUser = $stmt->fetch();
                $_SESSION['user'] = $dataUser['usuario'];
+               $_SESSION['idUser'] = $dataUser['id'];
 
-               $this->data['status'] = true;
-               $this->data['msg'] = 'Logado com sucesso';
-               // return $this->data;
-               header('Location:../pages/home.php');
+               return true ;
+               logs($this->db->getConnection(),$dataUser['id'],'SELECT','Usuarios','LOGIN');
           } 
           else 
           {

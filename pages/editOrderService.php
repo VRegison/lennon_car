@@ -53,7 +53,7 @@ $parts      = $OrderService->getAllPartsOrderService($_GET['id']);
                <div class="col-md-4">
                     <div class="form-group">
                          <label>Peças</label>
-                         <select class="form-control form-select" id="pecas">
+                         <select class="form-control selectClient form-select" id="pecas">
                               <option value="">Selecione uma Peça</option>
                               <?php foreach ($listParts as $part) : ?>
                                    <option value="<?= $part['id'] ?>"><?= $part['nome_peca'] ?></option>
@@ -71,7 +71,7 @@ $parts      = $OrderService->getAllPartsOrderService($_GET['id']);
                <div class="col-md-6">
                     <div class="form-group">
                          <label for="estado">Serviços</label>
-                         <select class="form-control form-select" id="servicos">
+                         <select class="form-control selectClient form-select" id="servicos">
                               <option value="">Selecione Um Serviço</option>
                               <?php foreach ($listServico as $servico) : ?>
                                    <option value="<?= $servico['id'] ?>"><?= $servico['nome_servico'] ?></option>

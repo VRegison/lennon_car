@@ -1,9 +1,10 @@
 <?php
 session_start();
 
+require "../config/connection.php";
 require "../controllers/OrderServiceController.php";
 require "../utils/formatDate.php";
-require "../config/connection.php";
+require "../utils/logFunction.php";
 
 
 // Load the dotenv package
@@ -51,13 +52,13 @@ class OrderService extends OrderServiceController
           // ASSEMBLING ARRAY
           while ($row = $stmt->fetch())
           {
-               $row['valor_total_servico'] = is_null($row['valor_total_servico']) ? 'em andamento' : $row['valor_total_servico'];
+               $row['valor_total_servico'] = is_null($row['valor_total_servico']) ? '----' : $row['valor_total_servico'];
                $row['data_chegada'] = formatDate($row['data_chegada']);
-               $row['data_entrega'] = formatDate($row['data_entrega']);
+               $row['data_entrega'] = is_null($row['data_entrega']) ? '----' : formatDate($row['data_entrega']);
                
                $row['button']   = ($row['status']) ? '<img  style="width:24px;" src="../assets/images/ok.png" />' : '<a href="./finishOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;" src="../assets/images/alerta.png" /></a>';
-               $row['edit']     = '<a href="./editOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;cursor:pointer;" src="../assets/images/edit.png" alt=""></a></td>';
-               $row['printOut'] = '<a href="./gerarPDF.php?id='.$row['id'].'"><img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" alt=""></a></td>';
+               $row['edit']     = ($row['status']) ? '<a href="./editOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;cursor:pointer;" src="../assets/images/edit.png" alt=""></a></td>':'<img  style="width:24px;" src="../assets/images/edit.png" alt=""></td>';
+               $row['printOut'] = ($row['status']) ? '<a href="./gerarPDF.php?id='.$row['id'].'" target="_blanck"><img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Clique para gerar um pdf"></a></td>' : '<img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Pdf não disponivel"></td>';
 
                               
                $services[] = $row;
@@ -75,6 +76,7 @@ class OrderService extends OrderServiceController
                $sql = "SELECT 
                               t1.id, t2.nome, t2.telefone, t2.email,
                               t1.placa_carro,t3.marca,t3.modelo,
+                              t1.corCarro,
                               CONCAT(t3.marca, ' - ', t1.ano_carro) AS carro,
                               t1.data_chegada, t1.data_entrega,
                               t1.corCarro,t1.KmAtual,
@@ -205,9 +207,6 @@ class OrderService extends OrderServiceController
              foreach ($this->parts as $part)
              {
 
-
-
-
                $stmtSelect = $this->db->getConnection()->prepare("SELECT qtde FROM estoque_produtos WHERE id_produto = :idPeca");
                $stmtSelect->execute([':idPeca' => $part['idPeca']]);
                $row = $stmtSelect->fetch(PDO::FETCH_ASSOC);
@@ -241,7 +240,7 @@ class OrderService extends OrderServiceController
                      ':valor' => $service['valor']
                  ]);
              }
-
+             logs($this->db->getConnection(),$_SESSION['idUser'],'UPDATE','estoque_produtos','Subtraindo produto, incluso no serviço');
               return $this->saveTotalService($idOrdemServico);
          
          }
@@ -283,7 +282,7 @@ class OrderService extends OrderServiceController
               ]);
           }
 
-          
+          // logs($this->db->getConnection(),$_SESSION['idUser'],'INSERT','estoque_produtos','Inserindo novo produto');
           return $this->saveTotalService($idOrdemServico);
 
      }
@@ -318,8 +317,6 @@ class OrderService extends OrderServiceController
           $this->db->getConnection()->query($query);
           
           return true;
-
-
      }
 }
 

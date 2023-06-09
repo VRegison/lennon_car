@@ -34,7 +34,7 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
           </div>
 
           <div class="right d-flex flex-column justify-content-center p-5">
-               <form action="./actions/login.php" method="post">
+               <form  method="post">
 
                     <div class="form-group">
                          <label>Usuario</label>
@@ -43,11 +43,11 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
 
                     <div class="form-group mt-4">
                          <label for="exampleInputPassword1">Senha</label>
-                         <input type="password" class="form-control" name="password" placeholder="Senha">
+                         <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
                     </div>
                     <input type="hidden" value="<?= $_SESSION['login'] ?>" class="form-control" id="alert-login" placeholder="Senha">
 
-                    <button type="submit" class="btn_login mt-4">Acessar</button>
+                    <button type="submit" onclick="login(event)" class="btn_login mt-4">Acessar</button>
 
                </form>
           </div>

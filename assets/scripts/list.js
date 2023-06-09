@@ -58,19 +58,21 @@ function editQtde(id, value,idStock)
 {
 
     var buttonEdit = document.getElementById(`editar_${id}`);
+    var imgEdit    = document.getElementById(`img_${id}`);
     var tdEditQtde = document.getElementById(`peca_${id}`);
     var valueQtde;
 
-    if(buttonEdit.innerText == 'Editar')
+    if(buttonEdit.name == 'editar')
     {
         tdEditQtde.innerHTML = `<input id='valorQtde_${id}' value='${value}' />`;
         valueQtde            = document.getElementById(`valorQtde_${id}`).value;
-        buttonEdit.innerText = 'Salvar';
+        buttonEdit.name = 'Salvar';
+        imgEdit.src = '../assets/images/ok.png';
 
     }
     else
     {
-        valueQtde            = document.getElementById(`valorQtde_${id}`).value;
+        valueQtde = document.getElementById(`valorQtde_${id}`).value;
 
         $.post("http://localhost/projetos/lennon_car/actions/register.php", { idStock:idStock,value:valueQtde,status:'5' },
         function (resposta)
@@ -80,7 +82,9 @@ function editQtde(id, value,idStock)
         })
 
         tdEditQtde.innerText = valueQtde;
-        buttonEdit.innerText = 'Editar';
+        buttonEdit.name = 'editar';
+        imgEdit.src = '../assets/images/edit.png';
+
 
     }
 

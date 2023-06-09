@@ -11,13 +11,13 @@ try
     if ($setUser['status'])
     {
         $returnUser = $userService->login();
+        if($returnUser)
+        {
+            echo 1;
+        }
 
     }
-    else
-    {
-        $_SESSION['login'] = $setUser['msg'];
-        header('Location:../index.php');
-    }
+  
 
 }
 catch (\Throwable $th) {
