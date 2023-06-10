@@ -4,20 +4,20 @@ require_once '../services/OrderService.php';
 try
 {
 
-$OrderService = new OrderService();
+   $OrderService = new OrderService();
 
-// VERIFY DATA TO END SERVICE
-if(is_array($_POST['data']))
-{
-   if($OrderService->validationDataOrderService($_POST['data']))
+   // VERIFY DATA TO END SERVICE
+   if(is_array($_POST['data']))
    {
-      $OrderService->editOrderService();
-      
-        echo true;
-      
-   }
+      if($OrderService->validationDataOrderService($_POST['data']))
+      {
+         $OrderService->editOrderService();
+         
+         echo true;
+         
+      }
 
-}
+   }
 
 }
 

@@ -66,4 +66,3 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
 </body>
 
 </html>
-<?php $_SESSION['login'] = 0 ?>

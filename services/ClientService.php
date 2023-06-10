@@ -34,6 +34,7 @@ class ClientService  extends ClientController
           }
      }
      
+     // INSERT INTO 
      public function insert()
      {
 
@@ -71,17 +72,14 @@ class ClientService  extends ClientController
 
               if($result)
               {
-               $data['status'] = true;
-               $data['msg'] = 'Cliente Criado !';
+               $data = true;
               }
 
               else
               {
-               $data['status'] = false;
-               $data['msg'] = 'Error ao criar Cliente, verificar com o suporte !';
+               $data = false;
               }
 
-              return $data;
           }
 
 

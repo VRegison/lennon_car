@@ -36,8 +36,8 @@ class CarService extends CarController
      }
 
       //INSERT PART AND STOCK
-      public function insert()
-      {
+     public function insert()
+     {
  
            $sqlSelect = "SELECT * FROM carros WHERE  marca = :marca";
            $stmtSelect = $this->db->getConnection()->prepare($sqlSelect);
@@ -70,12 +70,7 @@ class CarService extends CarController
                     return false;
                }
  
-           }
-           
+          }
  
- 
- 
- 
- 
-      }
+     }
 }

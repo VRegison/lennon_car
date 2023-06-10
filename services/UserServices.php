@@ -15,6 +15,7 @@ class UserService extends UserController
           $this->db->connect();
      }
 
+     // GET ALL SERVICES
      public function getAll()
      {
           $sql = "SELECT * FROM usuarios";
@@ -25,6 +26,7 @@ class UserService extends UserController
           print_r($usuarios);
      }
 
+     // INSERT INTO SERVICE
      public function insert()
      {
           $sql  = "INSERT INTO usuarios(usuario, password) VALUES (:nome,:pass)";
@@ -36,6 +38,7 @@ class UserService extends UserController
           $stmt->execute();
      }
 
+     // LOGIN SYSTEM
      public function login()
      {
           $sql  = "SELECT * FROM usuarios WHERE usuario = :usuario AND password = :pass";
@@ -52,8 +55,8 @@ class UserService extends UserController
                $_SESSION['user'] = $dataUser['usuario'];
                $_SESSION['idUser'] = $dataUser['id'];
 
-               return true ;
                logs($this->db->getConnection(),$dataUser['id'],'SELECT','Usuarios','LOGIN');
+               return true ;
           } 
           else 
           {

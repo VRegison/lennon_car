@@ -16,8 +16,8 @@ require_once('../actions/listAllClasses.php')
                <div class="col-md-12">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Cliente</label>
-                    <select id="client" class="form-control selectClient select2_style">
-                         <option>Selecione um cliente</option>
+                    <select  id="client" class="form-control  selectClient select2_style">
+                         <option value="0">Selecione um cliente</option>
                          <?php foreach ($clients as $client) : ?>
                               <option value="<?= $client['id'] ?>"><?= $client['nome'] ?></option>
                          <?php endforeach ?>

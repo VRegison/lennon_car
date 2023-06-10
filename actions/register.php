@@ -12,36 +12,34 @@ try {
 
      // REGISTES
      switch ($_POST['status']) {
+          // ORDEM SERVIÇO
           case  '1':
                $orderService = new OrderService();
                $orderService->setOrderService($_POST['client'], $_POST['car'], $_POST['year'], $_POST['place'], $_POST['color'], $_POST['km']);
                $return = $orderService->insert();
 
-               if ($return)
-               {
-                    echo 1;
-               }
-               else
-               {
-
-                    echo 2;
-               }
+               if ($return)echo 1;
+               else echo 2;
+               
 
                break;
 
+          // CLIENTE
           case  '2':
                $ClientService = new ClientService();
                $retornoSet = $ClientService->setClient($_POST['cliente'], $_POST['contato'], $_POST['email'], $_POST['bairro'], $_POST['rua']);
 
-               if ($retornoSet['status']) {
-                    $retornoInsert = $ClientService->insert();
+               if ($retornoSet) {
+                    if($ClientService->insert())
+                    {
+                         echo 1;
+                    }
+                    
 
-                    if ($retornoInsert['status'])  msgRouter($retornoInsert['msg'], '../pages/registerClient.php');
-                    else msgRouter($retornoInsert['msg'], '../pages/registerClient.php');
-               } else   msgRouter($retornoSet['msg'], '../pages/registerClient.php');
+               }
 
                break;
-
+          // SERVIÇO
           case  '3':
 
                $Service    = new ServicoService();
@@ -60,6 +58,7 @@ try {
 
                break;
 
+          // PEÇA
           case  '4':
                $Peca = new PartService();
                $retornoSet = $Peca->setPart($_POST['namePeca'], $_POST['qtdePeca']);
@@ -82,7 +81,9 @@ try {
 
                break;
 
+          // ESTOQUE 
           case  '5':
+
                $Peca = new PartService();
                $retornoInsert = $Peca->editStock($_POST['idStock'], $_POST['value']);
 
@@ -91,6 +92,8 @@ try {
 
                break;
 
+        
+          // CARRO
           case  '6':
                $Peca = new CarService();
 

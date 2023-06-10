@@ -9,42 +9,6 @@ $(document).ready(function() {
 
     switch (code) {
 
-
-        case '2':
-            var cliente  = document.getElementById('cliente').value;
-            var contato  = document.getElementById('contato').value;
-            var email    = document.getElementById('email').value;
-            var bairro   = document.getElementById('bairro').value;
-            var rua      = document.getElementById('rua').value;
-
-
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", { cliente:cliente,contato:contato,email:email,bairro:bairro,rua:rua,status:'2'},
-            function (resposta)
-            {
-    
-                if(resposta == '1')
-                {
-                    Toastify({
-
-                        text: "Cliente Cadastrado com sucesso !",
-                        duration: 1500
-                
-                    }).showToast();
-                }
-                else
-                {
-                    Toastify({
-
-                        text: "Peça já criada !",
-                
-                        duration: 1500
-                
-                    }).showToast();
-                }
-            })
-            
-        break;
-
         case '1':
             var client = document.getElementById('client').value;
             var car    = document.getElementById('car').value;
@@ -52,6 +16,13 @@ $(document).ready(function() {
             var place  = document.getElementById('place').value;
             var color  = document.getElementById('color').value;
             var km     = document.getElementById('km').value;
+            // Verificar se o valor de 'client' está vazio
+            if (place == '') {
+                document.getElementById('place').classList.add('is-invalid');
+                return;
+            } else {
+                document.getElementById('place').classList.remove('is-invalid');
+            }
 
 
             $.post("http://localhost/projetos/lennon_car/actions/register.php", 
@@ -88,7 +59,42 @@ $(document).ready(function() {
             })
             
         break;
-        
+
+        case '2':
+            var cliente  = document.getElementById('cliente').value;
+            var contato  = document.getElementById('contato').value;
+            var email    = document.getElementById('email').value;
+            var bairro   = document.getElementById('bairro').value;
+            var rua      = document.getElementById('rua').value;
+
+
+            $.post("http://localhost/projetos/lennon_car/actions/register.php", { cliente:cliente,contato:contato,email:email,bairro:bairro,rua:rua,status:'2'},
+            function (resposta)
+            {
+    
+                if(resposta == '1')
+                {
+                    Toastify({
+
+                        text: "Cliente Cadastrado com sucesso !",
+                        duration: 1500
+                
+                    }).showToast();
+                }
+                else
+                {
+                    Toastify({
+
+                        text: "Cliente já criada !",
+                
+                        duration: 1500
+                
+                    }).showToast();
+                }
+            })
+            
+        break;
+
         case '3':
             var nameService = document.getElementById('nameService').value;
             var descriptionService = document.getElementById('descriptionService').value;
@@ -150,37 +156,6 @@ $(document).ready(function() {
             
         break;
 
-        case '5':
-            var modelo = document.getElementById('modelo').value;
-            var marca = document.getElementById('marca').value;
-
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", { modelo:modelo,marca:marca,status:'6' },
-            function (resposta)
-            {
-    
-                if(resposta == '1')
-                {
-                    Toastify({
-
-                        text: "Peça criada com sucesso !",
-                
-                        duration: 1500
-                
-                    }).showToast();
-                }
-                else
-                {
-                    Toastify({
-
-                        text: "Peça já criada !",
-                
-                        duration: 1500
-                
-                    }).showToast();
-                }
-            })
-            
-        break;
 
         case '6':
             var modelo = document.getElementById('modelo').value;
