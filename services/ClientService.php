@@ -49,9 +49,7 @@ class ClientService  extends ClientController
           
           if (count($results) > 0)
           {
-              $data['status'] = false;
-              $data['msg'] = 'Cliente já existente !';
-              return $data;
+              return false;
           }
 
           else
@@ -70,15 +68,9 @@ class ClientService  extends ClientController
      
               $result =  $stmp->execute();
 
-              if($result)
-              {
-               $data = true;
-              }
-
-              else
-              {
-               $data = false;
-              }
+              if($result)  return  true;
+              else         return  false;
+     
 
           }
 

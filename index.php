@@ -24,13 +24,16 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
 
      <!-- Styles -->
      <link rel="stylesheet" href="./assets/style/index.css" />
-     <title>Document</title>
+     <title>login</title>
 </head>
 
 <body>
 
      <div class="d-flex container_login">
-          <div class="left">
+          <div class="d-flex flex-column justify-content-center align-items-center  left">
+               <!-- <img src="./assets/images/logo.png"> -->
+               <h1 class="display-3 text-white">Lennon CAR</h1>
+               <p  class="h3 text-white">Serviços de qualidade !</p>
           </div>
 
           <div class="right d-flex flex-column justify-content-center p-5">

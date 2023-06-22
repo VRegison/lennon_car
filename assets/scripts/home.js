@@ -37,8 +37,11 @@ if (statusAlert == 1) {
     Toastify({
 
         text: "Serviço criado com sucesso !",
-
-        duration: 1500
+        duration: 1500,
+        style: {
+            background: "linear-gradient(to right, #28a745, #28a745)",
+          },
+          
 
     }).showToast();
 }

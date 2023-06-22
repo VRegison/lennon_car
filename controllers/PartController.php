@@ -10,21 +10,19 @@ class PartController
 
      public function setPart($name,$qtde)
      {
-          if(is_string($name) && strlen($name) > 3 && $qtde > 0)
+          if(is_string($name) && strlen($name) > 3 )
           {
                $this->name = $name;
                $this->qtde = $qtde;
 
                
-               $data['status'] = true;
-               return $data;
+               return true;
           }
 
           else
           {
-               $data['status'] = false;
-               $data['msg'] = "Nome da Peça Invalido";
-               return $data;
+
+               return false;
           }
      }
 

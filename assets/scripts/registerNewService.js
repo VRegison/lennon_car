@@ -51,7 +51,10 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
      {
           Toastify({
                text: "Preencha todos os campos!",
-               duration: 1500
+               duration: 1500,
+               style: {
+                    background: "linear-gradient(to right, #dc3545, #dc3545)",
+                  },
           }).showToast();
           return;
      }
@@ -60,7 +63,10 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
      {
           Toastify({
                text: "Preencha a Quantidade !",
-               duration: 1500
+               duration: 1500,
+               style: {
+                    background: "linear-gradient(to right, #dc3545, #dc3545)",
+                  },
           }).showToast();
           return;
      }
@@ -70,7 +76,10 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
      {
           Toastify({
                text: "Preencha o valor !",
-               duration: 1500
+               duration: 1500,
+               style: {
+                    background: "linear-gradient(to right, #dc3545, #dc3545)",
+                  },
           }).showToast();
           return;
      }
@@ -137,7 +146,10 @@ function finalizaServico()
                if (resposta) {
                     Toastify({
                          text: "Serviço finalizado com sucesso !",
-                         duration: 1500
+                         duration: 1500,
+                         style: {
+                              background: "linear-gradient(to right, #28a745, #28a745)",
+                            },
                     }).showToast();
 
                     setTimeout(() => {
@@ -148,7 +160,10 @@ function finalizaServico()
                else {
                     Toastify({
                          text: "Dados invalidos !",
-                         duration: 1500
+                         duration: 1500,
+                         style: {
+                              background: "linear-gradient(to right, #dc3545, #dc3545)",
+                            },
                     }).showToast();
                }
           })
@@ -171,8 +186,10 @@ function editOrderService()
                     Toastify({
 
                          text: 'Editado com sucesso !',
-                 
-                         duration: 2000
+                         duration: 2000,
+                         style: {
+                              background: "linear-gradient(to right, #28a745, #28a745)",
+                            },
                  
                      }).showToast();
                }

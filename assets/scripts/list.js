@@ -39,7 +39,6 @@ function desativeActive(status, id, table) {
     $.post("http://localhost/projetos/lennon_car/actions/listAllClasses.php", { id: id, status: status, code: 1, table: table },
         function (resposta) {
             if (resposta) {
-                console.log("🚀 ~ file: list.js:9 ~ resposta:", resposta)
                 location.reload();
 
             }

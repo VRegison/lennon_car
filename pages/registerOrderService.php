@@ -31,7 +31,7 @@ require_once('../actions/listAllClasses.php')
                     <div class="form-group">
                          <label for="exampleInputEmail1">Veiculo</label>
                          <select id="car" class="form-control selectClient select2_style">
-                              <option>Selecione um Veiculo</option>
+                              <option value="0">Selecione um Veiculo</option>
                               <?php foreach ($cars as $car) : ?>
                                    <option value="<?= $car['id'] ?>"><?= $car['modelo'] . ' - ' . $car['marca'] ?></option>
                               <?php endforeach ?>

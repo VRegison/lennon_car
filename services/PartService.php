@@ -83,9 +83,8 @@ class PartService extends PartController
           
           if (count($results) > 0)
           {
-              $data['status'] = false;
-              $data['msg'] = 'Peça já existente!';
-              return $data;
+              $data = false;
+           
           }
 
           else
@@ -95,19 +94,24 @@ class PartService extends PartController
               $stmt->bindParam(':peca', $this->getName());
               $result =  $stmt->execute();
 
-              if($result)
+              if($result && $this->getQtde() > 0 && trim($this->getQtde()) != '')
               {
                $lastInsertedId =$this->db->getConnection()->lastInsertId();
                $this->updateStock($lastInsertedId,$this->getQtde());
 
-               $data['status'] = true;
-               $data['msg'] = 'Peça Criada!';
+               $data = true;
+             
               }
 
+              else if($result && $this->getQtde() <= 0 )
+              {
+               $data  = true;
+              }
+              
               else
               {
-               $data['status'] = false;
-               $data['msg'] = 'Error ao criar peça, verificar com o suporte !';
+                $data  = true;
+ 
               }
 
               return $data;

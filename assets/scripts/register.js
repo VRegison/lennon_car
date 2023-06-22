@@ -16,14 +16,20 @@ $(document).ready(function() {
             var place  = document.getElementById('place').value;
             var color  = document.getElementById('color').value;
             var km     = document.getElementById('km').value;
-            // Verificar se o valor de 'client' está vazio
-            if (place == '') {
-                document.getElementById('place').classList.add('is-invalid');
-                return;
-            } else {
-                document.getElementById('place').classList.remove('is-invalid');
-            }
 
+            var fields = ['client', 'car', 'year', 'place', 'color', 'km'];
+
+            fields.forEach(function(field) {
+                var value = document.getElementById(field).value;
+                var element = document.getElementById(field);
+            
+                if (value == '' || value == '0') {
+                    element.classList.add('is-invalid');
+                    return;
+                } else {
+                    element.classList.remove('is-invalid');
+                }
+            });
 
             $.post("http://localhost/projetos/lennon_car/actions/register.php", 
             { 
@@ -42,7 +48,10 @@ $(document).ready(function() {
                     Toastify({
 
                         text: "Ordem criada com sucesso !",
-                        duration: 1500
+                        duration: 1500,
+                        style: {
+                            background: "linear-gradient(to right, #28a745, #28a745)",
+                          },
                 
                     }).showToast();
                 }
@@ -50,7 +59,7 @@ $(document).ready(function() {
                 {
                     Toastify({
 
-                        text: "Erro , conatate o suporte !",
+                        text: "Erro , contate o suporte !",
                 
                         duration: 1500
                 
@@ -77,19 +86,35 @@ $(document).ready(function() {
                     Toastify({
 
                         text: "Cliente Cadastrado com sucesso !",
-                        duration: 1500
+                        duration: 1300,
+                        style: {
+                            background: "linear-gradient(to right, #28a745, #28a745)",
+                          },
+                          
                 
                     }).showToast();
+
+                    setTimeout(()=>{
+                    location.reload();
+                    },1300)
+           
+              
                 }
                 else
                 {
                     Toastify({
 
-                        text: "Cliente já criada !",
-                
-                        duration: 1500
+                        text: "Cliente já criado !",
+                        duration: 1300,
+                        style: {
+                            background: "linear-gradient(to right, #dc3545, #dc3545)",
+                          },
                 
                     }).showToast();
+                    setTimeout(()=>{
+                        location.reload();
+                        },1300)
+
                 }
             })
             
@@ -107,8 +132,14 @@ $(document).ready(function() {
                 {
                     Toastify({
                         text: "Serviço criado com sucesso !",
-                        duration: 1500
+                        duration: 1500,
+                        style: {
+                            background: "linear-gradient(to right, #28a745, #28a745)",
+                          },
                     }).showToast();
+                    setTimeout(()=>{
+                        location.reload();
+                        },1300)
                 }
                 else
                 {
@@ -128,6 +159,7 @@ $(document).ready(function() {
             var namePeca = document.getElementById('namePeca').value;
             var qtdePeca = document.getElementById('qtdePeca').value;
 
+
             $.post("http://localhost/projetos/lennon_car/actions/register.php", { namePeca:namePeca,qtdePeca:qtdePeca,status:'4' },
             function (resposta)
             {
@@ -137,10 +169,15 @@ $(document).ready(function() {
                     Toastify({
 
                         text: "Peça criada com sucesso !",
-                
-                        duration: 1500
+                        duration: 1500,
+                        style: {
+                            background: "linear-gradient(to right, #28a745, #28a745)",
+                          },
                 
                     }).showToast();
+                    setTimeout(()=>{
+                        location.reload();
+                        },1300)
                 }
                 else
                 {
@@ -151,11 +188,13 @@ $(document).ready(function() {
                         duration: 1500
                 
                     }).showToast();
+                    setTimeout(()=>{
+                        location.reload();
+                        },1300)
                 }
             })
             
         break;
-
 
         case '6':
             var modelo = document.getElementById('modelo').value;
@@ -170,8 +209,10 @@ $(document).ready(function() {
                     Toastify({
 
                         text: "Peça criada com sucesso !",
-                
-                        duration: 1500
+                        duration: 1500,
+                        style: {
+                            background: "linear-gradient(to right, #28a745, #28a745)",
+                          },
                 
                     }).showToast();
                 }

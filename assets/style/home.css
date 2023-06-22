@@ -46,7 +46,7 @@ td {
 
 .btn_button_add
 {
-     background: #7da7bd;
+     background: #ff793f;
 
 }
 
@@ -54,7 +54,7 @@ td {
 /* TABLE */
 table.dataTable thead .sorting_desc {
      color: #fff !important;
-     background: #7da7bd;
+     background: #ff793f;
      background-image: url(../images/sort_desc.png);
  }
 
@@ -65,14 +65,14 @@ table.dataTable thead td {
 
 table.dataTable thead .sorting {
      color: #fff !important;
-     background: #7da7bd !important;
+     background: #ff793f !important;
 
 }
 
 table.dataTable thead .sorting_asc {
      color: #fff !important;
 
-     background: #7da7bd !important;
+     background: #ff793f !important;
 
 }
 
