@@ -36,7 +36,7 @@ var table = $('#list').DataTable({
 function desativeActive(status, id, table) {
     console.log("🚀 ~ file: list.js:37 ~ table:", table)
 
-    $.post("http://localhost/projetos/lennon_car/actions/listAllClasses.php", { id: id, status: status, code: 1, table: table },
+    $.post("http://localhost/lennon_car/actions/listAllClasses.php", { id: id, status: status, code: 1, table: table },
         function (resposta) {
             if (resposta) {
                 location.reload();
@@ -73,7 +73,7 @@ function editQtde(id, value,idStock)
     {
         valueQtde = document.getElementById(`valorQtde_${id}`).value;
 
-        $.post("http://localhost/projetos/lennon_car/actions/register.php", { idStock:idStock,value:valueQtde,status:'5' },
+        $.post("http://localhost/lennon_car/actions/register.php", { idStock:idStock,value:valueQtde,status:'5' },
         function (resposta)
         {
 

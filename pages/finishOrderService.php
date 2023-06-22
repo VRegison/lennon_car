@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(E_ALL & ~E_WARNING);
+error_reporting(E_ALL & ~E_NOTICE);
 
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
@@ -87,7 +89,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                     <div class="form-group">
                          <label>Valor Peça</label>
                          <input type="number" class="form-control" id="valorPeça" placeholder="Digite valor da peça">
-                         <button type="button" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" style="background: #7da7bd;color:#fff" class="btn  mt-3">Adicionar Peça</button>
+                         <button type="button" id="buttonAddPeca" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" style="background: #7da7bd;color:#fff" class="btn  mt-3">Adicionar Peça</button>
                     </div>
                </div>
                <div class="col-md-6">

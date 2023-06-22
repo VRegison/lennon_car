@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+     session_start();
+ }
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+
 // if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
 // {
 //      header('Location:./pages/home.php');
@@ -107,7 +111,7 @@ session_start();
 
      <script>
           function logout() {
-               $.post("http://localhost/projetos/lennon_car/actions/listAllClasses.php", {
+               $.post("http://localhost/lennon_car/actions/listAllClasses.php", {
                          code: '2',
                     },
                     function(resposta) {

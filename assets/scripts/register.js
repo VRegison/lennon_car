@@ -31,7 +31,7 @@ $(document).ready(function() {
                 }
             });
 
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", 
+            $.post("http://localhost/lennon_car/actions/register.php", 
             { 
                 client:client,
                 car:car,
@@ -77,7 +77,7 @@ $(document).ready(function() {
             var rua      = document.getElementById('rua').value;
 
 
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", { cliente:cliente,contato:contato,email:email,bairro:bairro,rua:rua,status:'2'},
+            $.post("http://localhost/lennon_car/actions/register.php", { cliente:cliente,contato:contato,email:email,bairro:bairro,rua:rua,status:'2'},
             function (resposta)
             {
     
@@ -124,7 +124,7 @@ $(document).ready(function() {
             var nameService = document.getElementById('nameService').value;
             var descriptionService = document.getElementById('descriptionService').value;
 
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", { nameService:nameService,descriptionService:descriptionService,status:'3' },
+            $.post("http://localhost/lennon_car/actions/register.php", { nameService:nameService,descriptionService:descriptionService,status:'3' },
             function (resposta)
             {
     
@@ -160,7 +160,7 @@ $(document).ready(function() {
             var qtdePeca = document.getElementById('qtdePeca').value;
 
 
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", { namePeca:namePeca,qtdePeca:qtdePeca,status:'4' },
+            $.post("http://localhost/lennon_car/actions/register.php", { namePeca:namePeca,qtdePeca:qtdePeca,status:'4' },
             function (resposta)
             {
     
@@ -200,7 +200,7 @@ $(document).ready(function() {
             var modelo = document.getElementById('modelo').value;
             var marca = document.getElementById('marca').value;
 
-            $.post("http://localhost/projetos/lennon_car/actions/register.php", { modelo:modelo,marca:marca,status:'6' },
+            $.post("http://localhost/lennon_car/actions/register.php", { modelo:modelo,marca:marca,status:'6' },
             function (resposta)
             {
     

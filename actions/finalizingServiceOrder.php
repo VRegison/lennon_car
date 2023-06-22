@@ -1,6 +1,6 @@
 <?php
 require_once '../services/OrderService.php';
-
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 try
 {
 
@@ -12,10 +12,7 @@ try
       if($OrderService->validationDataOrderService($_POST['data']))
       {
          echo $OrderService->finishOrderService();
-            // if($OrderService->finishOrderService())
-            // {
-            //    echo true;
-            // }
+
       }
    
    }

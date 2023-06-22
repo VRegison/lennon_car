@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(E_ALL & ~E_WARNING);
+error_reporting(E_ALL & ~E_NOTICE);
 
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');

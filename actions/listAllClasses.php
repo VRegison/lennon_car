@@ -5,6 +5,7 @@ require_once '../services/ServicoService.php';
 require_once '../services/ClientService.php';
 require_once '../services/CarService.php';
 
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
 try
 {

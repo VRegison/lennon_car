@@ -86,7 +86,7 @@ $parts      = $OrderService->getAllPartsOrderService($_GET['id']);
                     <div class="form-group">
                          <label>Valor Peça</label>
                          <input  type="number" class="form-control" id="valorPeça" placeholder="Digite o valor da peça">
-                         <button type="button" style="background: #7da7bd;color:#fff" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" class="btn mt-3">Adicionar Peça</button>
+                         <button type="button" id="buttonAddPeca" style="background: #7da7bd;color:#fff" onclick="adicionarOpcao('pecas','itensListaPecas','valorPeça','peca','qtdePecas','<?=$_GET['id']?>')" class="btn mt-3">Adicionar Peça</button>
                     </div>
                </div>
                <div class="col-md-6">

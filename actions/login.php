@@ -1,6 +1,10 @@
 <?php
 require_once "../services/UserServices.php";
-session_start();
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 try
 {

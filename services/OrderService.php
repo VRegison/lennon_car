@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 session_start();
 
 require "../config/connection.php";
@@ -330,10 +331,15 @@ class OrderService extends OrderServiceController
           $stmt -> execute();
 
           $stock = $stmt->fetch(PDO::FETCH_ASSOC);
-          $valorDescontado = $stock['qtde'] - $qtde;
+        
+          if(count($stock) > 0)
+          {
+               $valorDescontado = $stock['qtde'] - $qtde;
 
 
-          if($valorDescontado <= 0 ) return '0';
+               if($valorDescontado <= 0 ) return '0';
+               else return '1';
+          }
           else return '1';
           
      }

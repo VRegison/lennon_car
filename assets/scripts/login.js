@@ -22,8 +22,10 @@ function login(event) {
 
     }
 
-    $.post("http://localhost/projetos/lennon_car/actions/login.php", { user: user, password: password },
+    $.post("http://localhost/lennon_car/actions/login.php", { user: user, password: password },
         function (resposta) {
+        console.log("🚀 ~ file: login.js:52 ~ login ~ resposta:", resposta)
+
             if (resposta == '1') {
                 Toastify({
                     text: 'Logado com sucesso !',

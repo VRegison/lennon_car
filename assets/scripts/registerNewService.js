@@ -144,7 +144,7 @@ function listContainsValue(list, value)
 // Finaliza Serviço
 function finalizaServico()
 {
-     $.post("http://localhost/projetos/lennon_car/actions/finalizingServiceOrder.php", { data: arrayEnvioService },
+     $.post("http://localhost/lennon_car/actions/finalizingServiceOrder.php", { data: arrayEnvioService },
           function (resposta) {
                if (resposta) {
                     Toastify({
@@ -156,7 +156,7 @@ function finalizaServico()
                     }).showToast();
 
                     setTimeout(() => {
-                         window.location.href = 'http://localhost/projetos/lennon_car/pages/home.php';
+                         window.location.href = 'http://localhost/lennon_car/pages/home.php';
                     }, 2000)
 
                }
@@ -178,7 +178,7 @@ function editOrderService()
 
 
 
-     $.post("http://localhost/projetos/lennon_car/actions/editService.php", { data: arrayRemoverServico },
+     $.post("http://localhost/lennon_car/actions/editService.php", { data: arrayRemoverServico },
           function (resposta) {
 
                if (arrayEnvioService.length > 0) {
@@ -207,8 +207,9 @@ function verifyStock()
 {
      const idProduto = $('#pecas').val();
      const qtde = $('#qtdePecas').val();
+     var buttonAddPeca = $('#buttonAddPeca');
 
-     $.post("http://localhost/projetos/lennon_car/actions/register.php", { idProduto: idProduto,qtde: qtde,status:'7'},
+     $.post("http://localhost/lennon_car/actions/register.php", { idProduto: idProduto,qtde: qtde,status:'7'},
      function (resposta)
      {
           if(resposta == "0")
@@ -220,6 +221,17 @@ function verifyStock()
                          background: "linear-gradient(to right, #dc3545, #dc3545)",
                        },
                }).showToast();
+
+               buttonAddPeca.prop('disabled', true);
+               buttonAddPeca.prop('title', "Produto não possui estoque !");
+
+               buttonAddPeca.css('cursor', 'not-allowed');
+
+          }
+          else
+          {
+               buttonAddPeca.css('cursor', 'pointer');
+               buttonAddPeca.prop('disabled', false);
           }
      })
 }

@@ -1,18 +1,31 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+     session_start();
+ }
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 require "../controllers/UserController.php";
 require "../config/connection.php";
 require "../utils/logFunction.php";
 
+// Load the dotenv package
+require_once '../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 class UserService extends UserController
 {
      private $db;
 
      public function __construct()
      {
-          $this->db = new Database('localhost', 'lennon_car', 'regison', 'senha');
-          $this->db->connect();
+            // Retrieve database credentials from environment variables
+            $dbHost = $_ENV['DB_HOST'];
+            $dbName = $_ENV['DB_NAME'];
+            $dbUser = $_ENV['DB_USER'];
+            $dbPassword = $_ENV['DB_PASSWORD'];
+    
+            $this->db = new Database($dbHost, $dbName, $dbUser, $dbPassword);
+            $this->db->connect();
      }
 
      // GET ALL SERVICES

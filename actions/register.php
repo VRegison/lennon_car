@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 require '../services/OrderService.php';
 require '../services/ClientService.php';
 require '../services/CarService.php';

@@ -1,5 +1,9 @@
 <?php
 session_start();
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+
+
+
 if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
 {
      header('Location:./pages/home.php');
