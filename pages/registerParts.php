@@ -4,14 +4,17 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
 
+$_SESSION['title'] = "Cadastro de Peças";
 require_once('../components/nav.php');
-require_once('../actions/register.php')
+require_once('../actions/register.php');
+
+
 ?>
 
 
 
 <div class="container ">
-     <h1 class="text-center mt-5">Nova Peça</h1>
+     <h1 class="text-center mt-5">Cadastro de Peça</h1>
      <form method="post" class="w-50 container__form">
 
           <div class="form-group  mt-3">

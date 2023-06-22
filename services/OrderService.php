@@ -58,7 +58,7 @@ class OrderService extends OrderServiceController
                
                $row['button']   = ($row['status']) ? '<img  style="width:24px;" src="../assets/images/ok.png" />' : '<a href="./finishOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;" src="../assets/images/alerta.png" /></a>';
                $row['edit']     = ($row['status']) ? '<a href="./editOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;cursor:pointer;" src="../assets/images/edit.png" alt=""></a></td>':'<img  style="width:24px;" src="../assets/images/edit.png" alt=""></td>';
-               $row['printOut'] = ($row['status']) ? '<a href="./gerarPDF.php?id='.$row['id'].'" target="_blanck"><img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Clique para gerar um pdf"></a></td>' : '<img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Pdf não disponivel"></td>';
+               $row['printOut'] = ($row['status']) ? '<a href="./gerarPDF.php?id='.$row['id'].'" target="_blank"><img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Clique para gerar um pdf"></a></td>' : '<img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Pdf não disponivel"></td>';
 
                               
                $services[] = $row;
@@ -138,7 +138,8 @@ class OrderService extends OrderServiceController
                {
                     $sql = "SELECT 
                     t2.id,t1.idOrdemServico,
-                    t2.nome_peca,t1.valor,t1.qtde
+                    t2.nome_peca,t1.valor,t1.qtde,
+                    t1.valor * t1.qtde AS totalValor
                     FROM itens_pecas AS t1
                     LEFT JOIN pecas  AS t2 ON t1.idPeca = t2.id
                     
@@ -317,6 +318,24 @@ class OrderService extends OrderServiceController
           $this->db->getConnection()->query($query);
           
           return true;
+     }
+
+     public function verifyStock($idProduto,$qtde)
+     {
+
+          $query = "SELECT * FROM estoque_produtos WHERE id_produto = :id_produto ";
+          $stmt  = $this->db->getConnection()->prepare($query);
+
+          $stmt -> bindValue(":id_produto", $idProduto);
+          $stmt -> execute();
+
+          $stock = $stmt->fetch(PDO::FETCH_ASSOC);
+          $valorDescontado = $stock['qtde'] - $qtde;
+
+
+          if($valorDescontado <= 0 ) return '0';
+          else return '1';
+          
      }
 }
 

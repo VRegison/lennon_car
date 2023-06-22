@@ -8,6 +8,7 @@ $SQLparts = ' WHERE status = 1';
 $SQLservice = ' WHERE status = 1';
 
 
+$_SESSION['title'] = "Finalizar Serviço";
 require_once '../components/nav.php';
 require_once '../actions/listAllClasses.php';
 require_once '../utils/masks.php';
@@ -66,7 +67,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                <div class="col-md-2">
                     <div class="form-group">
                          <label>Qtde.</label>
-                         <input type="number" class="form-control" id="qtdePecas">
+                         <input type="number" onmouseout="verifyStock()" class="form-control" id="qtdePecas">
                     </div>
                </div>
                <div class="col-md-6">

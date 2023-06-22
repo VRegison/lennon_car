@@ -1,3 +1,11 @@
+<?php
+session_start();
+// if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
+// {
+//      header('Location:./pages/home.php');
+// }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +13,7 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="../assets/images/logo.png">
 
      <!-- IMPORTS -->
      <!-- SweetAlert -->
@@ -27,14 +36,17 @@
      <link rel="stylesheet" href="../assets/style/cadastro.css" />
 
 
-     <title>Document</title>
+     <title><?=$_SESSION['title']?></title>
 </head>
 
 <body>
      <nav class="navbar navbar-expand-lg nav__bar ">
-          <a class="navbar-brand" href="#">
-               <!-- <img src="../assets/images/logo.png" style="width: 100px;"> -->
-          </a>
+          <div class="d-flex align-items-center justify-content-center">
+               <a class=" navbar-brand" href="../pages/home.php">
+                    <img src="../assets/images/logo.png" style="width: 100px;">
+               </a>
+          </div>
+    
 
 
           <a style="width: 65%;"></a>

@@ -5,6 +5,7 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
 
+$_SESSION['title'] = "Home";
 require("../actions/listAllClasses.php");
 require_once('../components/nav.php');
 

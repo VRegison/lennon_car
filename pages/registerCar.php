@@ -4,6 +4,7 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
 
+$_SESSION['title'] = "Cadastro de Carros";
 require_once('../components/nav.php');
 
 ?>
@@ -11,7 +12,7 @@ require_once('../components/nav.php');
 
 
 <div class="container ">
-     <h1 class="text-center mt-5">Nova Peça</h1>
+     <h1 class="text-center mt-5">Cadastro de Carro</h1>
      <form method="post"  class="w-50 container__form">
 
           <div class="form-group  mt-3">

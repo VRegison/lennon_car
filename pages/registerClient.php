@@ -4,12 +4,13 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
     header('Location:../index.php');
 }
 
+$_SESSION['title'] = "Cadastro de Clientes";
 require_once('../components/nav.php');
 
 ?>
 
 <div class="container mt-5">
-    <h2 class="text-center">Cadastrando Cliente</h2>
+    <h2 class="text-center">Cadastro de Cliente</h2>
     <form  method="post">
         <div class="row">
                 <div class="col-md-12">

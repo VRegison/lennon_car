@@ -52,7 +52,7 @@ try {
          $totalQtdePecas = $part['valor'] * $part['qtde'];
          $linhaPecas  .= '
           <tr> 
-               <td style="text-align:center; border: 1px solid #000;">'.$part['nome_peca'].'</td>
+               <td style="text-align:left;border: 1px solid #000;">'.$part['nome_peca'].'</td>
                <td style="text-align:center;border: 1px solid #000;">'.$part['qtde'].'</td>
                <td style="text-align:center;border: 1px solid #000;">'.number_format($part['valor'],2,",",".").'</td>
                <td style="text-align:center;border: 1px solid #000;">'.number_format($totalQtdePecas,2,",",".").'</td>
@@ -67,7 +67,7 @@ try {
          $valorTotalService += $service['valor'];
          $linhaService  .= '
           <tr  style="width: 100px;">
-               <td style="text-align:left; border: 1px solid #000;">'.$service['nome_servico'].'</td>
+               <td style="text-align:left;  border: 1px solid #000;">'.$service['nome_servico'].'</td>
                <td style="text-align:center;border: 1px solid #000;"> R$'.number_format($service['valor'],2,",",".").'</td>
           </tr>
           ';

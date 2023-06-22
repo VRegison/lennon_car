@@ -4,13 +4,16 @@ session_start();
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
+$_SESSION['title'] = "Cadastro Ordem Serviço";
 $SQLclients = "WHERE status = 1";
 require_once('../components/nav.php');
-require_once('../actions/listAllClasses.php')
+require_once('../actions/listAllClasses.php');
+
+
 ?>
 
 <div class="container mt-5">
-     <h2 class="text-center">Nova Ordem de Serviço</h2>
+     <h2 class="text-center">Cadastro Ordem de Serviço</h2>
      <form method="post">
           <div class="row">
                <div class="col-md-12">

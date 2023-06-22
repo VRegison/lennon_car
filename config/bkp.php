@@ -7,7 +7,7 @@ $banco = 'lennon_car';
 $data  =  date('Y-m-d');
 
 // Comando de backup
-$comando = "mysqldump --user={$usuario} --password={$senha} --host={$host} {$banco} > $data.sql";
+$comando = "mysqldump --user={$usuario} --password={$senha} --host={$host} {$banco} > config/bkp_arquivos/$data.sql";
 
 // Executa o comando
 exec($comando);

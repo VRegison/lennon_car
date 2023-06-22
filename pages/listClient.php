@@ -8,8 +8,10 @@ if (empty($_SESSION['user'] || isset($_SESSION['user'])))
      header('Location:../index.php');
 }
 
+$_SESSION['title'] = "Listar Clientes";
 require_once '../components/nav.php';
 require_once '../actions/listAllClasses.php';
+
 
 ?>
 

@@ -4,9 +4,11 @@ session_start();
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
+$_SESSION['title'] = "Estoque";
 
 require_once '../actions/listAllClasses.php';
 require_once '../components/nav.php';
+
 
 ?>
 

@@ -6,8 +6,10 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 }
 
 
+$_SESSION['title'] = "Listar Peças";
 require_once '../actions/listAllClasses.php';
 require_once '../components/nav.php';
+
 
 ?>
 

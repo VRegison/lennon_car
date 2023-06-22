@@ -108,6 +108,17 @@ try {
 
 
                break;
+          
+         
+         
+          // STOCK
+          case  '7':
+               $OrderService = new OrderService();
+               $stock = $OrderService->verifyStock($_POST['idProduto'],$_POST['qtde']);
+              
+               if($stock == "0") echo "0";
+               else echo "1";
+               break;
      }
 } catch (\Throwable $th) {
      echo $th->getMessage() . '--' . $th->getFile() . '--->' . $th->getLine();

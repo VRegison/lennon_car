@@ -4,6 +4,7 @@ session_start();
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
+$_SESSION['title'] = "Editar Ordem de Serviço";
 
 require_once '../components/nav.php';
 require_once '../actions/listAllClasses.php';
@@ -65,7 +66,7 @@ $parts      = $OrderService->getAllPartsOrderService($_GET['id']);
                <div class="col-md-2">
                     <div class="form-group">
                          <label>Qtde.</label>
-                         <input type="number" placeholder="Qtde de Peças" class="form-control" id="qtdePecas">
+                         <input type="number" placeholder="Qtde de Peças" onblur="verifyStock()" class="form-control" id="qtdePecas">
                     </div>
                </div>
                <div class="col-md-6">
@@ -104,9 +105,9 @@ $parts      = $OrderService->getAllPartsOrderService($_GET['id']);
                          <div class="form-control" style="overflow-y: scroll;height: 100px;">
                               <ul id="itensListaPecas">
                                 <?php 
-                                    foreach ($parts as $peca) {
-                                        echo '<li title="Dê um duplo clique para remove-lo" id="' . $peca['id'] . '_' . $peca['idOrdemServico'] . '">' . $peca['nome_peca'] . '(x' . $peca['qtde'] . ')</li>';
-
+                                    foreach ($parts as $peca)
+                                    {
+                                        echo '<li title="Dê um duplo clique para remove-lo" id="' . $peca['id'] . '_' . $peca['idOrdemServico'] . '">' . '(x' . $peca['qtde'] .') ' . $peca['nome_peca'] .' - R$' . ($peca['totalValor']) .'</li>';
                                     }
                                  ?>
                               </ul>
@@ -121,7 +122,7 @@ $parts      = $OrderService->getAllPartsOrderService($_GET['id']);
                                    <ul id="itensLista">
                                    <?php 
                                     foreach ($services as $service) {
-                                        echo '<li title="Dê um duplo clique para remove-lo" id="' . $service['id'] . '_' . $service['idOrdemServico'] . '">' . $service['nome_servico'] . '</li>';
+                                        echo '<li title="Dê um duplo clique para remove-lo" id="' . $service['id'] . '_' . $service['idOrdemServico'] . '">' . $service['nome_servico'] .' - R$' .$service['valor'] . '</li>';
                                     }
                                  ?>
                                    </ul>

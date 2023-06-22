@@ -71,7 +71,6 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
           return;
      }
 
-
      if(valor.value <= 0)
      {
           Toastify({
@@ -95,8 +94,8 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
           var newLi = document.createElement("li");
 
           const valorLi = title == 'peca'
-               ? select.options[select.selectedIndex].text + '(x' + qtdePeca + ')'
-               : select.options[select.selectedIndex].text;
+               ? ' (x' + qtdePeca + ') ' + select.options[select.selectedIndex].text +  ' - R$' + qtdePeca*valor.value
+               : select.options[select.selectedIndex].text + ' - $R$'+valor.value;
 
           newLi.textContent = valorLi;
           newLi.setAttribute("title", "Faça um duplo clique para remover");
@@ -126,11 +125,15 @@ function listContainsValue(list, value)
 
      // Verifica se o valor já existe na lista
      for (var i = 0; i < lis.length; i++) {
-          let separandoElementos = lis[i].textContent.split("(");
-          console.log(separandoElementos.includes(value))
+          let separandoElementos = lis[i].textContent.split(")");
+          let pegandoValor = separandoElementos[1] ? separandoElementos[1].split("-") : separandoElementos[0].split("-");
+
+          let arraySemEspacos = pegandoValor.map(function(texto) {
+               return texto.trim();
+             });
 
 
-          if (separandoElementos.includes(value)) {
+          if (arraySemEspacos.includes(value)) {
                return true;
           }
      }
@@ -200,9 +203,29 @@ function editOrderService()
 
 }
 
+function verifyStock()
+{
+     const idProduto = $('#pecas').val();
+     const qtde = $('#qtdePecas').val();
+
+     $.post("http://localhost/projetos/lennon_car/actions/register.php", { idProduto: idProduto,qtde: qtde,status:'7'},
+     function (resposta)
+     {
+          if(resposta == "0")
+          {
+               Toastify({
+                    text: "Não Possui Estoque !",
+                    duration: 1500,
+                    style: {
+                         background: "linear-gradient(to right, #dc3545, #dc3545)",
+                       },
+               }).showToast();
+          }
+     })
+}
+
 // EVENTOS 
 
-// Remove item ul
 services.addEventListener("dblclick", function (event) {
      if (event.target.tagName.toLowerCase() === "li") {
 
@@ -250,7 +273,6 @@ pecas.addEventListener("dblclick", function (event) {
 
 
                var index = arrayEnvioService.findIndex(objeto => objeto.idPeca == separandoElementos[0]);
-               console.log("🚀 ~ file: registerNewService.js:175 ~ index:", index)
                if (index !== -1) {
                     arrayEnvioService.splice(index, 1);
                }
