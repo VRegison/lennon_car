@@ -15,7 +15,10 @@ try {
 
 
      require '../vendor/autoload.php';
-     require '../vendor/mpdf/mpdf/mpdf.php';
+
+     // Resto do código
+     
+    
      require '../services/OrderService.php';
      require '../utils/masks.php';
 
@@ -79,7 +82,7 @@ try {
 
 
      // Criar uma nova instância do mPDF
-     $mpdf = new Mpdf();
+     $mpdf = new \Mpdf\Mpdf();
 
      // TOPO
      $html = '<div class="container-pdf" >';

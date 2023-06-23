@@ -58,8 +58,8 @@ class OrderService extends OrderServiceController
                $row['data_entrega'] = is_null($row['data_entrega']) ? '----' : formatDate($row['data_entrega']);
                
                $row['button']   = ($row['status']) ? '<img  style="width:24px;" src="../assets/images/ok.png" />' : '<a href="./finishOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;" src="../assets/images/alerta.png" /></a>';
-               $row['edit']     = ($row['status']) ? '<a href="./editOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;cursor:pointer;" src="../assets/images/edit.png" alt=""></a></td>':'<img  style="width:24px;" src="../assets/images/edit.png" alt=""></td>';
-               $row['printOut'] = ($row['status']) ? '<a href="./gerarPDF.php?id='.$row['id'].'" target="_blank"><img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Clique para gerar um pdf"></a></td>' : '<img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Pdf não disponivel"></td>';
+               $row['edit']     = ($row['status']) ? '<a href="./editOrderService.php?id=' . $row['id'] . '" ><img  style="width:24px;cursor:pointer;" src="../assets/images/edit.png" alt=""></a></td>':'<img  style="width:24px;cursor:not-allowed;" title="Não disponivel, finalize o serviço" src="../assets/images/edit.png" alt=""></td>';
+               $row['printOut'] = ($row['status']) ? '<a href="./gerarPDF.php?id='.$row['id'].'" target="_blank"><img  style="width:24px;cursor:pointer;" src="../assets/images/imprimir.png" title="Clique para gerar um pdf"></a></td>' : '<img  style="width:24px;cursor:not-allowed;" src="../assets/images/imprimir.png" title="Pdf não disponivel, finaize o serviço"></td>';
 
                               
                $services[] = $row;
@@ -221,6 +221,8 @@ class OrderService extends OrderServiceController
                $stmtUpdate = $this->db->getConnection()->prepare("UPDATE estoque_produtos SET qtde = :novaQtde WHERE id_produto = :idPeca");
                $stmtUpdate->execute([':novaQtde' => $novaQtde, ':idPeca' => $part['idPeca']]);
 
+               
+
 
                 $idOrdemServico =  $part['idOrderService'];
                 $stmtPeca->execute([
@@ -332,12 +334,12 @@ class OrderService extends OrderServiceController
 
           $stock = $stmt->fetch(PDO::FETCH_ASSOC);
         
-          if(count($stock) > 0)
+          if(is_array($stock))
           {
                $valorDescontado = $stock['qtde'] - $qtde;
 
 
-               if($valorDescontado <= 0 ) return '0';
+               if($valorDescontado < 0 ) return '0';
                else return '1';
           }
           else return '1';

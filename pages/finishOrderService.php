@@ -69,7 +69,7 @@ $data = $OrderService->getOneOrderService($_GET['id']);
                <div class="col-md-2">
                     <div class="form-group">
                          <label>Qtde.</label>
-                         <input type="number" onmouseout="verifyStock()" class="form-control" id="qtdePecas">
+                         <input type="number" onblur="verifyStock()" class="form-control" id="qtdePecas">
                     </div>
                </div>
                <div class="col-md-6">

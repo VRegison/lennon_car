@@ -54,6 +54,9 @@ $(document).ready(function() {
                           },
                 
                     }).showToast();
+                    setTimeout(() => {
+                        window.location.href = 'http://localhost/lennon_car/pages/home.php';
+                   }, 2000)
                 }
                 else
                 {

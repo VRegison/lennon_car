@@ -92,10 +92,10 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
      )
      {
           var newLi = document.createElement("li");
-
+          var valorPeca = parseFloat( qtdePeca*valor.value).toFixed(2);
           const valorLi = title == 'peca'
-               ? ' (x' + qtdePeca + ') ' + select.options[select.selectedIndex].text +  ' - R$' + qtdePeca*valor.value
-               : select.options[select.selectedIndex].text + ' - $R$'+valor.value;
+               ? ' (x' + qtdePeca + ') ' + select.options[select.selectedIndex].text +  ' - R$' + valorPeca
+               : select.options[select.selectedIndex].text + ' - R$'+valor.value;
 
           newLi.textContent = valorLi;
           newLi.setAttribute("title", "Faça um duplo clique para remover");

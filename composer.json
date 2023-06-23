@@ -1,7 +1,7 @@
 {
     "require": {
-        "mpdf/mpdf": "^6.1",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "mpdf/mpdf": "8.0.4"
 
     }
 }
