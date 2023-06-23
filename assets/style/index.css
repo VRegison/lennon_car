@@ -1,0 +1,31 @@
+:root{
+     --global-primary-color:#ff793f;
+}
+
+.container_login{
+     min-height:100vh;
+
+}
+
+.left{
+     flex:60%;
+     background-color: var(--global-primary-color)
+}
+
+.right{
+     flex:40%;
+     min-height:100vh;
+     
+
+}
+.btn_login{
+     width:100%;
+     border:none;
+     border-radius:7px;
+     padding:1%;
+     background-color: var(--global-primary-color);
+     color:#fff;
+}
+.btn_login:hover{
+     opacity:0.9
+}
