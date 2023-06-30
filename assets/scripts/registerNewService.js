@@ -105,6 +105,10 @@ function adicionarOpcao(idLista, idUl, value, title, qtde, idOrderService)
           list.appendChild(newLi);
           arrayEnvioService.push(obj);
 
+          valor.value = "";
+          document.getElementById(qtde).value = "";
+          console.log(qtdePeca);
+
      } else {
           Toastify({
                text: "Valor já existe !",
