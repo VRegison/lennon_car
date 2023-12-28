@@ -1,5 +1,5 @@
-// const url = "http://24.199.96.236/lennon_car/";
-const url = "http://localhost/lennon_car/";
+const url = "http://24.199.96.236/lennon_car/";
+// const url = "http://localhost/lennon_car/";
 
 
 $(document).ready(function () {
