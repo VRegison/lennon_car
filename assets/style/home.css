@@ -1,0 +1,113 @@
+* {
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
+}
+
+table {
+     border-collapse: collapse;
+     width: 100%;
+     text-align: center;
+}
+
+th {
+     background-color: #f2f2f2;
+     padding: 10px;
+}
+
+td {
+     padding: 10px;
+}
+
+/* TABLE */
+.container__section {
+     flex-direction: column;
+     justify-content: center
+}
+
+.container__table {
+     padding: 1.5%
+}
+
+.container__conteudo {
+     display: flex;
+     align-items: center;
+     height: 20vh;
+}
+.select__conteudo{
+     margin-left: 1.5%;
+}
+.select__conteudo select{
+     padding: .3rem 1rem;
+}
+
+.container__conteudo a {
+     margin-left: 1.5%;
+     color: #fff !important;
+}
+
+.icon_add {
+     width: 25px;
+     height: 25px;
+}
+
+.btn_button_add
+{
+     background: #ff793f;
+
+}
+
+
+/* TABLE */
+table.dataTable thead .sorting_desc {
+     color: #fff !important;
+     background: #ff793f;
+     background-image: url(../images/sort_desc.png);
+ }
+
+table.dataTable thead th,
+table.dataTable thead td {
+     border-bottom: 0 !important;
+}
+
+table.dataTable thead .sorting {
+     color: #fff !important;
+     background: #ff793f !important;
+
+}
+
+table.dataTable thead .sorting_asc {
+     color: #fff !important;
+
+     background: #ff793f !important;
+
+}
+
+
+table.dataTable thead th,
+table.dataTable thead td {
+     padding: 10px 18px;
+}
+
+
+table.dataTable {
+     background-color: rgba(255, 255, 255, 1) !important;
+     border-spacing: 2px !important;
+}
+
+table.dataTable.no-footer {
+     border-bottom: 0px !important;
+}
+
+.table_td_header {
+     font-size: 15px !important;
+}
+
+.table_td {
+     font-size: 14px;
+}
+
+#table_linha:nth-child(odd) {
+     background-color: #e1f0f9;
+     font-size: 10px;
+
+}
