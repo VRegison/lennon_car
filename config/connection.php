@@ -14,7 +14,7 @@ class Database
           $this->host ='24.199.96.236';
           $this->dbname = 'lennon_car';
           $this->username = 'root';
-          $this->password = '';
+          $this->password = 'ADOnis#@!';
      }
 
      public function connect()
