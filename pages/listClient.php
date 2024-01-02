@@ -8,8 +8,9 @@ if (empty($_SESSION['user'] || isset($_SESSION['user'])))
      header('Location:../index.php');
 }
 
-$_SESSION['title'] = "Listar Clientes";
-require_once '../components/nav.php';
+$_SESSION['title'] = "Clientes";
+require_once('../components/sidebar.php');
+
 require_once '../actions/listAllClasses.php';
 
 
@@ -17,10 +18,11 @@ require_once '../actions/listAllClasses.php';
 
 <section class="container__section">
 
-     <div class="d-flex justify-content-center mt-4 mb-3">
+
+     <div class="container__table">
+     <div class="d-flex justify-content-center ">
           <h1>Clientes</h1>
      </div>
-     <div class="container__table">
           <table id="list">
                <thead>
                     <tr id="table_tr_header">
@@ -80,6 +82,7 @@ require_once '../actions/listAllClasses.php';
      <input id="toast-alert" type="hidden" value="<?= $_SESSION['registro'] ?>">
 
 </section>
+<script src="../assets/scripts/sidebar.js"></script>
 
 <script src="../assets/scripts/list.js"></script>
 

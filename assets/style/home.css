@@ -5,8 +5,10 @@
 
 table {
      border-collapse: collapse;
-     width: 100%;
+     width: 95% !important;
      text-align: center;
+     margin-left: 5% !important;
+     overflow-y: scroll !important;
 }
 
 th {
@@ -21,11 +23,15 @@ td {
 /* TABLE */
 .container__section {
      flex-direction: column;
-     justify-content: center
+     justify-content: center;
+     z-index: -999999;
 }
 
 .container__table {
-     padding: 1.5%
+     padding: 1.5%;
+     overflow-y: scroll !important;
+     height: 99vh !important;
+
 }
 
 .container__conteudo {
@@ -34,7 +40,9 @@ td {
      height: 20vh;
 }
 .select__conteudo{
-     margin-left: 1.5%;
+     margin-left: 5%;
+     display: flex;
+     gap: 1%;
 }
 .select__conteudo select{
      padding: .3rem 1rem;
@@ -110,4 +118,8 @@ table.dataTable.no-footer {
      background-color: #e1f0f9;
      font-size: 10px;
 
+}
+
+.dataTables_wrapper{
+     z-index: -9999;
 }

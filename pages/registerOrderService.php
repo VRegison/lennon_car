@@ -6,7 +6,8 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 }
 $_SESSION['title'] = "Cadastro Ordem Serviço";
 $SQLclients = "WHERE status = 1";
-require_once('../components/nav.php');
+require_once('../components/sidebar.php');
+
 require_once('../actions/listAllClasses.php');
 
 

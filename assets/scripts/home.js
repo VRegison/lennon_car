@@ -1,10 +1,10 @@
-// const url = "http://localhost/lennon_car/";
-const url = "http://24.199.96.236/lennon_car/";
+const url = "http://localhost/lennon_car/";
+// const url = "http://24.199.96.236/lennon_car/";
 
 
 
 
-function init(){
+function init() {
     var table = $('#tabelaServicos').DataTable({
         "aaSorting": [],
         "iDisplayLength": 50,
@@ -13,12 +13,12 @@ function init(){
 
         language: {
             "sEmptyTable": "Nenhum registro encontrado",
-            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_",
+            "sInfo": "",
             "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
             "sInfoFiltered": "(Filtrados de _MAX_ registros)",
             "sInfoPostFix": "",
             "sInfoThousands": ".",
-            "sLengthMenu": "_MENU_ Resultados por página",
+            "sLengthMenu": "",
             "sLoadingRecords": "Carregando...",
             "sProcessing": "Processando...",
             "sZeroRecords": "Nenhum registro encontrado",
@@ -36,9 +36,12 @@ function init(){
 
         }
     });
+
+   
+
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     changerTypeOrderService();
 })
 
@@ -66,33 +69,31 @@ function changerTypeOrderService() {
 }
 
 
+function confirmDesativeOrderService(idService, value) {
 
-function confirmDesativeOrderService(idService,value) {
+    var msg = value != '1' ? 'Ativar' : 'Desativar';
 
-        var msg = value != '1' ? 'Ativar':'Desativar';
+    Swal.fire({
+        title: 'Confirmar',
+        text: `Você tem certeza de que deseja ${msg} o serviço ?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: `Sim, ${msg}!`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Se o usuário confirmar, chame a função authorizateBudget
+            desativeOrderService(idService, value);
+        }
+    });
 
-        Swal.fire({
-            title: 'Confirmar',
-            text: `Você tem certeza de que deseja ${msg} o serviço ?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: `Sim, ${msg}!`
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Se o usuário confirmar, chame a função authorizateBudget
-                desativeOrderService(idService,value);
-            }
-        });
-    
 
 }
 
-function confirmAndAuthorizateBudget(idService,status) {
+function confirmAndAuthorizateBudget(idService, status) {
 
-    if (status == "1")
-    {
+    if (status == "1") {
         Swal.fire({
             title: 'Confirmar',
             text: 'Você tem certeza de que deseja autorizar o orçamento?',
@@ -108,8 +109,7 @@ function confirmAndAuthorizateBudget(idService,status) {
             }
         });
     }
-    else
-    {
+    else {
         Swal.fire({
             icon: 'error',
             title: 'Erro',
@@ -137,7 +137,7 @@ function authorizateBudget(idService) {
                     duration: 1500
                 }).showToast();
             } else {
-               
+
                 Toastify({
                     text: "Orçamento Autorizado!",
                     duration: 1500

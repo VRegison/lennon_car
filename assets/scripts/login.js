@@ -1,10 +1,39 @@
 const alertLogin = $("#alert-login").val();
 
-const url = "http://24.199.96.236/lennon_car/";
-// const url = "http://localhost/lennon_car/";
+// const url = "http://24.199.96.236/lennon_car/";
+const url = "http://localhost/lennon_car/";
+
+$(document).ready(function() {
+    carregaImgLottie();
+})
 
 
-function login(event) {
+
+function carregaImgLottie()
+{
+      // O caminho para o arquivo JSON da animação
+  var animationPath = '/lennon_car/assets/images/lottieFiles/login.json';
+
+  // Opções de configuração (opcional)
+  var options = {
+    loop: false, // Repetir a animação
+    autoplay: true, // Iniciar a animação automaticamente
+    renderer: 'svg', // Tipo de renderizador (pode ser 'svg' ou 'canvas')
+    container: document.getElementById('lottie-container'), // Elemento contêiner
+  };
+
+  // Inicializar a animação Lottie
+  var anim = lottie.loadAnimation({
+    container: options.container,
+    renderer: options.renderer,
+    loop: options.loop,
+    autoplay: options.autoplay,
+    path: animationPath,
+  });
+}
+
+function login(event)
+{
 
     event.preventDefault();
 

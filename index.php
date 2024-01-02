@@ -25,7 +25,6 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.rtl.min.css" integrity="sha512-tC3gnye8BsHmrW3eRP3Nrj/bs+CSVUfzkjOlfLNrfvcbKXFxk5+b8dQCZi9rgVFjDudwipXfqEhsKMMgRZGCDw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <!-- Toas -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css" integrity="sha512-k+xZuzf4IaGQK9sSDjaNyrfwgxBfoF++7u6Q0ZVUs2rDczx9doNZkYXyyQbnJQcMR4o+IjvAcIj69hHxiOZEig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
      <!-- Styles -->
      <link rel="stylesheet" href="./assets/style/index.css" />
      <title>login</title>
@@ -35,21 +34,21 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
 
      <div class="d-flex container_login">
           <div class="d-flex flex-column justify-content-center align-items-center  left">
-               <!-- <img src="./assets/images/logo.png"> -->
-               <h1 class="display-3 text-white">Lennon CAR</h1>
-               <p  class="h3 text-white">Serviços de qualidade !</p>
+               <div id="lottie-container"></div>
           </div>
 
           <div class="right d-flex flex-column justify-content-center p-5">
+
+               <div class="container-logo">
+                    <img id="img-logo" src="./assets/images/logo.png" alt="Logo imagem sistema">
+               </div>
                <form  method="post">
 
                     <div class="form-group">
-                         <label>Usuario</label>
                          <input type="text" class="form-control" name="user" id="user" placeholder="Usuario">
                     </div>
 
                     <div class="form-group mt-4">
-                         <label for="exampleInputPassword1">Senha</label>
                          <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
                     </div>
                     <input type="hidden" value="<?= $_SESSION['login'] ?>" class="form-control" id="alert-login" placeholder="Senha">
@@ -67,8 +66,11 @@ if (!empty($_SESSION['user'] || isset($_SESSION['user'])))
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.5/sweetalert2.min.js" integrity="sha512-jt82OWotwBkVkh5JKtP573lNuKiPWjycJcDBtQJ3BkMTzu1dyu4ckGGFmDPxw/wgbKnX9kWeOn+06T41BeWitQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js" integrity="sha512-0Yc4Jv5wX4+mjDuLxmHFGqgDtMFAEBLpPq/0nPVmAOwHPMkYXiS1YVYWTcrVQztftk/32089DDTyrCJO8hBCZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     
+       <!-- Lottie Web -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" integrity="sha512-jEnuDt6jfecCjthQAJ+ed0MTVA++5ZKmlUcmDGBv2vUI/REn6FuIdixLNnQT+vKusE2hhTk2is3cFvv5wA+Sgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
      <script src="./assets/scripts/login.js"></script>
+
 
 </body>
 

@@ -5,7 +5,8 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 }
 
 $_SESSION['title'] = "Cadastro de Clientes";
-require_once('../components/nav.php');
+require_once('../components/sidebar.php');
+
 
 ?>
 

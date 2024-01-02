@@ -1,5 +1,5 @@
-const url = "http://24.199.96.236/lennon_car/";
-// const url = "http://localhost/lennon_car/";
+// const url = "http://24.199.96.236/lennon_car/";
+const url = "http://localhost/lennon_car/";
 
 
 
@@ -11,12 +11,12 @@ var table = $('#list').DataTable({
 
     language: {
         "sEmptyTable": "Nenhum registro encontrado",
-        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_",
+        "sInfo": "",
         "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
         "sInfoFiltered": "(Filtrados de _MAX_ registros)",
         "sInfoPostFix": "",
         "sInfoThousands": ".",
-        "sLengthMenu": "_MENU_ Resultados por página",
+        "sLengthMenu": "",
         "sLoadingRecords": "Carregando...",
         "sProcessing": "Processando...",
         "sZeroRecords": "Nenhum registro encontrado",

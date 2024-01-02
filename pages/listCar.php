@@ -4,19 +4,21 @@ session_start();
 if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
      header('Location:../index.php');
 }
-$_SESSION['title'] = "Listar Carros";
+$_SESSION['title'] = "Veiculos";
 
 require_once '../actions/listAllClasses.php';
-require_once '../components/nav.php';
+require_once('../components/sidebar.php');
+
 
 ?>
 
 <section class="container__section">
 
+     <div class="container__table">
+
      <div class="d-flex justify-content-center mt-4 mb-3">
           <h1>Carros</h1>
      </div>
-     <div class="container__table">
           <table id="list">
                <thead>
                     <tr id="table_tr_header">
@@ -50,7 +52,7 @@ require_once '../components/nav.php';
      <input id="toast-alert" type="hidden" value="<?= $_SESSION['registro'] ?>">
 
 </section>
-
+<script src="../assets/scripts/sidebar.js"></script>
 <script src="../assets/scripts/list.js"></script>
 
 
