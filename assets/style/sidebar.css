@@ -15,10 +15,11 @@
 body {
     min-height: 100vh;
     background-color: var(--clr);
+    display: flex;
 }
 
 .sidebar {
-    position: absolute;
+    position: relative;
     width: 70px;
     height: 100vh;
     background: #ff793f;

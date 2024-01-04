@@ -41,6 +41,8 @@ $urlFiles = '../assets/images/';
   <link rel="stylesheet" href="../assets/style/home.css" />
   <link rel="stylesheet" href="../assets/style/cadastro.css" />
   <link rel="stylesheet" href="../assets/style/sidebar.css" />
+  <link rel="stylesheet" href="../assets/style/modulos.css" />
+
 
 
 

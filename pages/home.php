@@ -8,11 +8,12 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 }
 
 $_SESSION['title'] = "Home";
-require_once('../components/sidebar.php');
 
 ?>
 
+<?php require_once('../components/sidebar.php');?>
 <section class="container__section">
+     
      <!-- LISTA ORDEM DE SERVIÇO -->
      <div class="container__table">
 
@@ -43,9 +44,8 @@ require_once('../components/sidebar.php');
                          <th class="table_td_header">Cliente</th>
                          <th class="table_td_header" style="width: 17%;">Veiculo</th>
                          <th class="table_td_header" style="width: 10%;">Placa</th>
-                         <th class="table_td_header" style="width: 6%;">Cor</th>
-                         <th class="table_td_header" style="width: 5%;">Entrada</th>
                          <th class="table_td_header" style="width: 5%;">Saida</th>
+                         <th class="table_td_header" style="width: 6%;">Status</th>
                          <th class="table_td_header" style="width: 5%;">Total($)</th>
                          <th class="table_td_header" style="width: 1%;"></th>
                          <th class="table_td_header" style="width: 1%;"></th>
@@ -60,7 +60,6 @@ require_once('../components/sidebar.php');
                </tbody>
           </table>
      </div>
-     <input id="toast-alert" type="hidden" value="<?= $_SESSION['registro'] ?>">
 
 </section>
 

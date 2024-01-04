@@ -43,6 +43,7 @@ function init() {
 
 $(document).ready(function () {
     changerTypeOrderService();
+    console.log('ok')
 })
 
 
@@ -72,6 +73,7 @@ function changerTypeOrderService() {
 function confirmDesativeOrderService(idService, value) {
 
     var msg = value != '1' ? 'Ativar' : 'Desativar';
+    console.log('vbebgevjhu')
 
     Swal.fire({
         title: 'Confirmar',

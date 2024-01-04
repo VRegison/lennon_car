@@ -20,9 +20,8 @@ switch ($_POST['code']) {
                  <td style='background-color:".$color."' class='table_td'>".$service['nome'] ."</td>
                  <td style='background-color:".$color."' class='table_td'>".$service['carro'] ."</td>
                  <td style='background-color:".$color."' class='table_td'>".$service['placa_carro'] ."</td>
-                 <td style='background-color:".$color."' class='table_td'>".$service['corCarro'] ."</td>
-                 <td style='background-color:".$color."' class='table_td'>".$service['data_chegada'] ."</td>
                  <td style='background-color:".$color."' class='table_td'>".$service['data_entrega'] ."</td>
+                 <td style='background-color:".$color."' class='table_td'>Andamento</td>
                  <td style='background-color:".$color."' class='table_td'>".$service['valor_total_servico'] ."</td>
                  <td style='background-color:".$color."' class='table_td'>".$service['printOut']."</td>
                  <td style='background-color:".$color."' class='table_td'>".$service['edit']."</td>
