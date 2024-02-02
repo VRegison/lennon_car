@@ -43,10 +43,6 @@ $urlFiles = '../assets/images/';
   <link rel="stylesheet" href="../assets/style/sidebar.css" />
   <link rel="stylesheet" href="../assets/style/modulos.css" />
 
-
-
-
-
   <title><?= $_SESSION['title'] ?></title>
 </head>
 
@@ -61,49 +57,16 @@ $urlFiles = '../assets/images/';
         </a>
       </li>
       <div class="Menulist">
-        <li id="1" style="--bg:#2f3640;" >
-          <a href="../pages/home.php">
-            <div class="icon"><ion-icon name="briefcase-outline"></ion-icon></div>
-            <div class="text">Serviços</div>
+
+        <?php foreach($_SESSION['navigation'] as $nav) : ?>
+          <li id="<?php echo $nav['id'] ?>" style="--bg:#2f3640;" >
+          <a href="<?php echo $nav['caminho'] ?>">
+            <div class="icon"><ion-icon name="<?php echo $nav['icon'] ?>"></ion-icon></div>
+            <div class="text"><?php echo $nav['titulo_pagina'] ?></div>
           </a>
         </li>
-
-        <li id="2" style="--bg:#2f3640;">
-          <a href="../pages/listClient.php">
-            <div class="icon"><ion-icon name="people-outline"></ion-icon></div>
-            <div class="text">Clientes</div>
-          </a>
-        </li>
-
-        <li id="3" style="--bg:#2f3640;">
-          <a href="../pages/listCar.php">
-            <div class="icon"><ion-icon name="car-sport-outline"></ion-icon></div>
-            <div class="text">Veiculos</div>
-          </a>
-        </li>
-
-        <li id="4" style="--bg:#2f3640;">
-          <a href="../pages/listPart.php">
-            <div class="icon"><ion-icon name="build-outline"></ion-icon></div>
-            <div class="text">Produtos</div>
-          </a>
-        </li>
-
-        <li id="5" style="--bg:#2f3640;">
-          <a href="../pages/listStock.php">
-            <div class="icon"><ion-icon name="clipboard-outline"></ion-icon></div>
-            <div class="text">Estoque</div>
-          </a>
-        </li>
-
-
-        <li  style="--bg:#2f3640;">
-          <a href="#">
-            <div class="icon"><ion-icon name="settings-outline"></ion-icon></div>
-            <div class="text">Configuração</div>
-          </a>
-        </li>
-
+        <?php endforeach ?>
+ 
       </div>
 
       <div class="bottom">
@@ -128,15 +91,6 @@ $urlFiles = '../assets/images/';
 
     </ul>
   </div>
-
-
-
-
-
-
-
-
-
 
 
 

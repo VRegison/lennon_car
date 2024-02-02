@@ -9,6 +9,7 @@ if (empty($_SESSION['user'] || isset($_SESSION['user']))) {
 
 $_SESSION['title'] = "Home";
 
+
 ?>
 
 <?php require_once('../components/sidebar.php');?>

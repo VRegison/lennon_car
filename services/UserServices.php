@@ -28,7 +28,7 @@ class UserService extends UserController
             $this->db->connect();
      }
 
-     // GET ALL SERVICES
+     // GET ALL USER
      public function getAll()
      {
           $sql = "SELECT * FROM usuarios";
@@ -51,6 +51,16 @@ class UserService extends UserController
           $stmt->execute();
      }
 
+     public function getNavigation()
+     {
+          $sql = "SELECT * FROM navegacao  WHERE status = 1";
+          $result = $this->db->getConnection()->query($sql);
+
+          $navegacao = $result->fetchAll(PDO::FETCH_ASSOC);
+
+          return $navegacao;
+     }
+
      // LOGIN SYSTEM
      public function login()
      {
@@ -65,8 +75,9 @@ class UserService extends UserController
           if ($stmt->rowCount() > 0) 
           {
                $dataUser = $stmt->fetch();
-               $_SESSION['user'] = $dataUser['usuario'];
-               $_SESSION['idUser'] = $dataUser['id'];
+               $_SESSION['user']        = $dataUser['usuario'];
+               $_SESSION['idUser']      = $dataUser['id'];
+               $_SESSION['navigation']  = $this->getNavigation();
 
                logs($this->db->getConnection(),$dataUser['id'],'SELECT','Usuarios','LOGIN');
                return true ;

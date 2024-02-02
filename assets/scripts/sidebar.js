@@ -1,6 +1,6 @@
 $(document).ready(function () {
-   let menuToggle = document.querySelector('.menuToggle');
-   let sidebar = document.querySelector('.sidebar');
+   let menuToggle     = document.querySelector('.menuToggle');
+   let sidebar        = document.querySelector('.sidebar');
    var tituloDaPagina = document.title;
 
    menuToggle.onclick = function () {
@@ -24,7 +24,6 @@ $(document).ready(function () {
 
    }
    Menulist.forEach((item) => {
-      console.log("🚀 ~ file: home.js:58 ~ init ~ item:", item)
       return item.addEventListener('click', activeLink(1))
 
    })
